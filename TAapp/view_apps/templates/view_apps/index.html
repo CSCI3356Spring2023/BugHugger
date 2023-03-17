@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
 {% if latest_course_list %}
     <ul>
     {% for course in latest_course_list %}
