@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cfa0312f-5bb0-46c8-8a8e-411a265d4597" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../TAapp/TAapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/TAapp/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TAapp/TAapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/TAapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mysite.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/templates/view_apps/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_apps/views.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2N7PSebyd6gI09v8PI24ivaZW7M" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/samforbush/Documents/GitHub/BugHugger/mysite"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfa0312f-5bb0-46c8-8a8e-411a265d4597" name="Changes" comment="" />
+      <created>1679012148268</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679012148268</updated>
+    </task>
+    <servers />
+  </component>
+</project>
