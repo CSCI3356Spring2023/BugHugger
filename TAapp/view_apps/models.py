@@ -14,6 +14,7 @@ class Course(models.Model):
     num_office_hours = models.IntegerField()
     num_tas = models.IntegerField()
 
+
     def __str__(self):
         return self.course_id
 
