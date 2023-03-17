@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Course(models.Model):
+    course_title = models.CharField(max_length=100)
     description_text = models.CharField(max_length=100)
     pub_date = models.DateTimeField('date published')
     professor_text = models.CharField(max_length=50)

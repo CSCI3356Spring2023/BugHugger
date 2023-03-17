@@ -3,12 +3,11 @@
 <link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
 
 {% if latest_course_list %}
-    <ul>
+    <div class = "flex-container">
     {% for course in latest_course_list %}
-        <li><a href="/view_apps/{{ course.id }}/">{{ course.description_text }}
-</a></li>
+        <div>{{ course.course_title }}</div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No courses are available.</p>
 {% endif %}
