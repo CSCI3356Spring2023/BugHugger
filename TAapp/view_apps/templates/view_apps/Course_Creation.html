@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Creation</title>
+</head>
+<body>
+    <form action="Course_Creation.html" method="GET">
+    <div>
+        <label for="name">What is your name?</label>
+        <input type="text" name="name" id="name" required>
+    </div>
+    <div>
+        <label for="email">What is your email?</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+    <div>
+        <label for="course_name">What is the course Name</label>
+        <input type="text" name="course_name" id="course_name" required>
+    </div>
+    <div>
+        <label for="course_description">Can you provide the course description?</label>
+        <textarea id="course_description" name="course_description" required></textarea>
+    </div>
+    <div>
+        <label for="prerequisites">What are the prerequisites?</label>
+        <textarea id="prerequisites" name="prerequisites"></textarea>
+    </div>
+    <div>
+        <label for="sections">Number of Sections</label>
+        <input type="number" name="sections" id="sections" min="1" max="5" required>
+    </div>
+    <div>
+        <label for="TAs">Number of TAs</label>
+        <input type="number" name="TAs" id="TAs" min="1" max="10" required>
+    </div>
+    <div>
+        <label for="office_hours">Amount of Office Hours per Week</label>
+        <input type="number" name="office_hours" id="office_hours" min="2" max="10" required>
+    </div>
+    <div>
+        Discussion Sections
+        <div>
+            <label for="yes">Yes</label>
+            <input type="radio" name="disc" id="yes" value="yes" required>
+        </div>
+        <div>
+            <label for="no">No</label>
+            <input type="radio" name="disc" id="no" value="no" required>
+        </div>
+    </div>
+    <div>
+        Meetings
+        <div>
+            <label for="yes">In-person</label>
+            <input type="radio" name="disc" id="yes" value="In-person" required>
+        </div>
+        <div>
+            <label for="no">Asynchronous</label>
+            <input type="radio" name="disc" id="no" value="Asynchronous" required>
+        </div>
+    </div>
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+</body>
+</html>

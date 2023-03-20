@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TA Application</title>
+</head>
+<body>
+    <form action="TA_Application.html" method="GET"></form>
+    <div>
+        <label for="name">What is your name?</label>
+        <input type="text" name="name" id="name" required>
+    </div>
+    <div>
+        <label for="eagleID">What is your Eagle ID?</label>
+        <input type="text" name="eagleID" id="eagleID" required>
+    </div>
+    <div>
+        <label for="office_hours">How much time per week can you comfortably commit to this role?</label>
+        <input type="number" name="office_hours" id="office_hours" min="2" max="15" required>
+    </div>
+    <div>
+        <label for="major">What is your major?</label>
+        <input type="text" name="major" id="major" required>
+    </div>
+    <div>
+        <label for="course_description">Why do you want to be a TA for this class?</label>
+        <textarea id="course_description" name="course_description"></textarea>
+    </div>
+    <div>
+        <label for="file">Optional: upload any supporting documents I.e. resume or cover letter</label>
+        <input id="file" type="file" name="file">
+    </div>
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+</body>
+</html>
