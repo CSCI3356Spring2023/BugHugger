@@ -1,5 +1,44 @@
 
-.flex-container {
+a {
+    color: blue;
+}
+
+.course-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.course-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.interface-container {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.course {
+    width: 40%;
+    height: 50%;
+    border-style: solid;
+    border-radius: 10%;
+}
+
+.course-title {
+    text-align: center;
+}
+
+.apply-button {
+    font-size: 30px;
+    text-align: center;
 }

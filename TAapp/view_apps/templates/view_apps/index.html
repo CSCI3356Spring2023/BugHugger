@@ -2,10 +2,41 @@
 
 <link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
 
+<div class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>Username</p>
+</div>
+<div class = "interface-container">
+    <p> My Courses </p>
+    <p> Applications Remaining</p>
+    <p>
+        <a> Filter Courses</a>
+    </p>
+</div>
 {% if latest_course_list %}
-    <div class = "flex-container">
+    <div class = "course-container">
     {% for course in latest_course_list %}
-        <div>{{ course.course_title }}</div>
+        <div class = "course">
+            <div class = "course-title">{{ course.course_title }} </div>
+            <div class = "course-inner">
+                <div>
+                    <p> ID: {{ course.course_id }} </p>
+                    <p> Professor: {{ course.professor_text }} </p>
+                    <p> Time: {{ course.time_text }} </p>
+                    <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                </div>
+                <div>
+                    <p> Discussions: {{ course.has_discussion }} </p>
+                    <p> Meetings: {{ course.has_meetings }} </p>
+                    <p> Office Hours: {{ course.num_office_hours }} / Week </p>
+                    <p> No. TAs: {{ course.num_tas }} </p>
+                </div>
+            </div>
+            <div> {{ course.description_text }} </div>
+            <p class = "apply-button">
+                <a> Submit Application </a>
+            </p>
+        </div>
     {% endfor %}
     </div>
 {% else %}

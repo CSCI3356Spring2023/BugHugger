@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfa0312f-5bb0-46c8-8a8e-411a265d4597" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TAapp/login/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TAapp/TAapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/TAapp/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TAapp/TAapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/TAapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TAapp/view_apps/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/view_apps/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TAapp/view_apps/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/view_apps/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TAapp/view_apps/static/view_apps/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/view_apps/static/view_apps/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TAapp/view_apps/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../TAapp/view_apps/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
