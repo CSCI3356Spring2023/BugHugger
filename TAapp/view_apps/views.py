@@ -15,3 +15,9 @@ def create_course(request):
     latest_course_list = Course.objects.all()
     context = {'latest_course_list': latest_course_list, 'users': users}
     return render(request, 'view_apps/create_course.html', context)
+
+def apply(request):
+    users = User.objects.all()
+    latest_course_list = Course.objects.all()
+    context = {'latest_course_list': latest_course_list, 'users': users}
+    return render(request, 'view_apps/apply.html', context)
