@@ -1,0 +1,103 @@
+/*#A63131,#800000,#008080 color scheme*/
+/*font styles 
+*/
+html * {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/*reset to default styles*/
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #800000;
+}
+
+/*form styles*/
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+  color: #800000;
+}
+
+form input[type="text"], form input[type="email"], form textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+form input[type="submit"] {
+  padding: 5px 10px;
+  border-radius: 2px;
+  background-color: #A63131;
+  color: white;
+}
+
+form input[type="submit"]:hover {
+  background-color: #008080;
+}
+
+/*nav styles - background maroon */
+nav {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  background-color: #800000;
+  box-shadow: 0px 5px 10px
+}
+
+nav a {
+  color: white;
+  font-weight: bold;
+}
+
+/*heading styles*/
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #008080;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+
+/*button styles*/
+button {
+  padding: 5px 10px;
+  border-radius: 2px;
+  background-color: #008080;
+  color: #A63131;
+}
+
+button:hover {
+  background-color: #A63131;
+}
+
+/*login and create*/
+#login {
+    display: inline-grid;
+    margin: 0 auto;
+}
+
+#login * {
+    margin: 5px
+}
+
+#create {
+    text-decoration: none;
+    font-size: 11px;
+    color: #800000;
+    text-align: center;
+    justify-self: right;
+    padding-right: 5px;
+}
+
+#create p {
+    margin-top: 0px;
+}
