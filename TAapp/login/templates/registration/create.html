@@ -1,0 +1,12 @@
+{% extends 'registration/index.html' %}
+
+{% block content %}
+
+<form class="" method="POST" action="{% url 'login:create' %}">
+    {% csrf_token %}
+    <h3>Create Account</h3>
+    {{ form }}
+    <input type="submit">
+</form>
+
+{% endblock %}

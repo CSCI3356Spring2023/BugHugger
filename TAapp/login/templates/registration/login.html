@@ -1,0 +1,15 @@
+{% extends 'registration/index.html' %}
+
+{% block content %}
+
+<form class="login" method="POST" action="">
+    {% csrf_token %}
+    <h3>Login to Acccess TA Application System</h3>
+    <label for="username"/>Username
+    <input type="text" id="username" name="username"/>
+    <label for="password">Password<label/>
+    <input type="password" id="password" name="password"/>
+    <input type="submit" id="submit" value="Enter"/>
+</form>
+
+{% endblock %}
