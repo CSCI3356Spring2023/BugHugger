@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Course
-import datetime
+from datetime import datetime
 from django.contrib.auth.models import User
 
 def is_student(user):
@@ -24,14 +24,14 @@ def index(request):
 
 def create_course(request):
     if request.method == "POST":
-        name = request.POST['name']
+        professor_name = request.POST['name']
         title = request.POST['course_name']
         description = request.POST['course_description']
-        c = Course(course_title = title, description_text = description, professor_text = name, pub_date = datetime.now(), course_id = "NEW", has_meetings = True, has_discussion = True, section = 1, num_sections = 4, num_office_hours = 6, num_tas = 4)
+        c = Course(course_title = title, description_text = description, professor_text = professor_name, pub_date = datetime.now(), course_id = "NEW", has_meetings = True, has_discussion = True, section = 1, num_sections = 4, num_office_hours = 6, num_tas = 4)
         c.save()
         return redirect('/view_apps/')
     else:
-        render(request, 'view_apps/create_course.html')
+        return render(request, 'view_apps/create_course.html')
 
 def apply(request):
     latest_course_list = Course.objects.all()
