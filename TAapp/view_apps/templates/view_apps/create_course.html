@@ -18,28 +18,24 @@
         <input type="text" name="name" id="name" required>
     </div>
     <div>
+        <label for="email">What is your email?</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+    <div>
         <label for="course_name">What is the course Name</label>
         <input type="text" name="course_name" id="course_name" required>
-    </div>
-    <div>
-        <label for="course_id">What is the course ID (ex. CSCI3356)</label>
-        <input type="text" name="course_id" id="course_id" required>
-    </div>
-    <div>
-        <label for="time_text">When is this course? (ex. MWF 1)</label>
-        <input type="text" name="time_text" id="time_text" required>
     </div>
     <div>
         <label for="course_description">Can you provide the course description?</label>
         <textarea id="course_description" name="course_description" required></textarea>
     </div>
-     <div>
-        <label for="section">Which Section?</label>
-        <input type="number" name="section" id="section" min="1" max="5" required>
+    <div>
+        <label for="prerequisites">What are the prerequisites?</label>
+        <textarea id="prerequisites" name="prerequisites"></textarea>
     </div>
     <div>
-        <label for="num_sections">Number of Sections</label>
-        <input type="number" name="num_sections" id="num_sections" min="1" max="5" required>
+        <label for="sections">Number of Sections</label>
+        <input type="number" name="sections" id="sections" min="1" max="5" required>
     </div>
     <div>
         <label for="TAs">Number of TAs</label>
@@ -63,11 +59,11 @@
     <div>
         Meetings
         <div>
-            <label for="yes1">Yes</label>
+            <label for="yes">In-person</label>
             <input type="radio" name="disc" id="yes1" value="In-person" required>
         </div>
         <div>
-            <label for="no1">No</label>
+            <label for="no">Asynchronous</label>
             <input type="radio" name="disc" id="no1" value="Asynchronous" required>
         </div>
     </div>
