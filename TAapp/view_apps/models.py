@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Course(models.Model):
-    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
     course_title = models.CharField(max_length=100)
     description_text = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published')

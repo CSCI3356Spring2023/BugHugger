@@ -33,7 +33,7 @@ def create_course(request):
         num_sections = request.POST['num_sections']
         oh = request.POST['office_hours']
         ta = request.POST['TAs']
-        c = Course(assigned_to = request.user, course_title = title, description_text = description, professor_text = professor_name, pub_date = datetime.now(), course_id = id, has_meetings = True, has_discussion = True, section = section, num_sections = num_sections, num_office_hours = oh, num_tas = ta)
+        c = Course(course_title = title, description_text = description, professor_text = professor_name, pub_date = datetime.now(), course_id = id, has_meetings = True, has_discussion = True, section = section, num_sections = num_sections, num_office_hours = oh, num_tas = ta, time_text = time)
         c.save()
         return redirect('/view_apps/')
     else:
