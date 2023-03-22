@@ -8,8 +8,7 @@
 </nav>
 <div class = "interface-container">
     <p> My Courses </p>
-    <p> Applications Remaining</p>
-        <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
+    <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
 </div>
 {% if latest_course_list %}
     <div class = "course-container">
@@ -31,11 +30,6 @@
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
-            <p class = "apply-button">
-                <a href="{%url 'view_apps:apply' %}">
-                    <p>Submit Application</p>
-                </a>
-            </p>
         </div>
     {% endfor %}
     </div>
