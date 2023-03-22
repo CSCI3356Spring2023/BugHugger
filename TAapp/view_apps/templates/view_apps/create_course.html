@@ -11,7 +11,8 @@
     <title>Course Creation</title>
 </head>
 <body>
-    <form action="professor.html" method="GET">
+    <form class="" method="POST" action="{% url 'view_apps:create_course' %}">
+        {% csrf_token %}
     <div>
         <label for="name">What is your name?</label>
         <input type="text" name="name" id="name" required>

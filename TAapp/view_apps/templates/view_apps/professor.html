@@ -9,9 +9,7 @@
 <div class = "interface-container">
     <p> My Courses </p>
     <p> Applications Remaining</p>
-    <form action="create_course.html" method="GET">
-        <button type="submit">Create Course</button>
-    </form>
+        <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
 </div>
 {% if latest_course_list %}
     <div class = "course-container">
