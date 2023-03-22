@@ -34,9 +34,9 @@
             </div>
             <div> {{ course.description_text }} </div>
             <p class = "apply-button">
-                <a href="{%url 'view_apps:apply' %}">
-                    <p>Submit Application</p>
-                </a>
+                <form action="apply.html" method="GET">
+                    <button type="submit">Submit Application</button>
+                </form>
             </p>
         </div>
     {% endfor %}
