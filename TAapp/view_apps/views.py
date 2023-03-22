@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .models import Course
+from .models import Course, App
 from datetime import datetime
 from django.contrib.auth.models import User
 
@@ -34,6 +34,17 @@ def create_course(request):
         return render(request, 'view_apps/create_course.html')
 
 def apply(request):
-    latest_course_list = Course.objects.all()
-    context = {'latest_course_list': latest_course_list}
+    if request.method == "POST":
+        course_id = request.POST['courseID']
+        student_name = request.POST['name']
+        eagle_id = request.POST['eagleID']
+        office_hours = request.POST['office_hours']
+        major = request.POST['major']
+        why_ta = request.POST['course_description']
+        c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
+        c.save()
+        return redirect('/view_apps/')
+    courseID = request.GET['courseID'] if 'courseID' in request.GET else "NULL"
+    # latest_course_list = Course.objects.all()
+    context={"courseID": courseID}
     return render(request, 'view_apps/apply.html', context)

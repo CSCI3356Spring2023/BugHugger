@@ -11,7 +11,9 @@
     <title>TA Application</title>
 </head>
 <body>
-    <form action="student.html" method="GET"></form>
+    <form class="" method="POST" action="{% url 'view_apps:apply' %}">
+        {% csrf_token %}
+    <input type="hidden" name="courseID" id="courseID" value="{{courseID}}" />
     <div>
         <label for="name">What is your name?</label>
         <input type="text" name="name" id="name" required>
@@ -38,5 +40,6 @@
     </div>
     <button type="reset">Reset</button>
     <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
