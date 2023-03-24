@@ -22,7 +22,7 @@ class App(models.Model):
     course_id = models.CharField(max_length=15)
     student_name = models.CharField(max_length=100)
     eagle_id = models.CharField(max_length=15)
-    office_hours = models.CharField(max_length=10)
+    office_hours = models.CharField(max_length=15)
     major = models.CharField(max_length=200)
     why_ta = models.CharField(max_length=500)
     # TODO: file

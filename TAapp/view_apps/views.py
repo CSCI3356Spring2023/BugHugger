@@ -44,7 +44,7 @@ def apply(request):
         c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
         c.save()
         return redirect('/view_apps/')
-    courseID = request.GET['courseID'] if 'courseID' in request.GET else "NULL"
+    courseID = request.GET['courseID'] if 'courseID' in request.GET else 9999
     # latest_course_list = Course.objects.all()
     context={"courseID": courseID}
     return render(request, 'view_apps/apply.html', context)
