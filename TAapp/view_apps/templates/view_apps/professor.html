@@ -11,9 +11,9 @@
     <p> Applications Remaining</p>
         <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
 </div>
-{% if latest_course_list %}
+{% if course_list %}
     <div class = "course-container">
-    {% for course in latest_course_list %}
+    {% for course in course_list %}
         <div class = "course">
             <div class = "course-title">{{ course.course_title }} </div>
             <div class = "course-inner">

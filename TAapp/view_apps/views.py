@@ -12,18 +12,21 @@ def is_professor(user):
 def index(request):
     user = request.user
     if is_student(user):
-        latest_course_list = Course.objects.all()
-        context = {'latest_course_list': latest_course_list}
+        course_list = Course.objects.all()
+        context = {'course_list': course_list}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
-        latest_course_list = Course.objects.all()
-        context = {'latest_course_list': latest_course_list,}
+        course_list = Course.objects.all().filter(assigned_to_email = user.username)
+        context = {'course_list': course_list}
         return render(request, 'view_apps/professor.html', context)
     else:
-        return render(request, 'view_apps/professor.html')
+        course_list = Course.objects.all().filter(assigned_to_email=user.username)
+        context = {'course_list': course_list}
+        return render(request, 'view_apps/professor.html', context)
 
 def create_course(request):
     if request.method == "POST":
+        email = request.user.username
         professor_name = request.POST['name']
         title = request.POST['course_name']
         description = request.POST['course_description']
@@ -42,7 +45,7 @@ def create_course(request):
         if disc == 'yes':
             disc_val = True
 
-        c = Course(time_text=time, course_title=title, description_text=description,
+        c = Course(assigned_to_email = email, time_text=time, course_title=title, description_text=description,
                    professor_text=professor_name, pub_date=datetime.now(), course_id=id, has_meetings=meet_val,
                    has_discussion=disc_val, section=section, num_sections=num_sections, num_office_hours=oh, num_tas=ta)
         c.save()

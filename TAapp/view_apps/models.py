@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Course(models.Model):
     course_title = models.CharField(max_length=100)
     description_text = models.CharField(max_length=500)
@@ -14,10 +13,10 @@ class Course(models.Model):
     num_sections = models.IntegerField()
     num_office_hours = models.IntegerField()
     num_tas = models.IntegerField()
+    assigned_to_email = models.CharField(max_length=100)
 
     def __str__(self):
         return self.course_id
-    
 class App(models.Model):
     course_id = models.CharField(max_length=15)
     student_name = models.CharField(max_length=100)
