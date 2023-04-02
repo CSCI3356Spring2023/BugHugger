@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from .models import Course, App
 from datetime import datetime
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 def is_student(user):
@@ -49,6 +50,13 @@ def create_course(request):
                    professor_text=professor_name, pub_date=datetime.now(), course_id=id, has_meetings=meet_val,
                    has_discussion=disc_val, section=section, num_sections=num_sections, num_office_hours=oh, num_tas=ta)
         c.save()
+        send_mail(
+            'Successfully Created Course',
+            title,
+            'forbushs@bc.edu',
+            [email + '@bc.edu'],
+            fail_silently=False,
+        )
         return redirect('/view_apps/')
     else:
         return render(request, 'view_apps/create_course.html')

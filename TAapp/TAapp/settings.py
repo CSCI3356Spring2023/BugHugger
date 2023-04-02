@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  # new
+DEFAULT_FROM_EMAIL = "forbushs@bc.edu"
+EMAIL_HOST = "smtp.sendgrid.net"  # new
+EMAIL_HOST_USER = "apikey"  # new
+EMAIL_HOST_PASSWORD = "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"  # new
+EMAIL_PORT = 587  # new
+EMAIL_USE_TLS = True  # new
 
 # Application definition
 
