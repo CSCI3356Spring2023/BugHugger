@@ -57,7 +57,7 @@ def apply(request):
         eagle_id = request.POST['eagleID']
         office_hours = request.POST['office_hours']
         major = request.POST['major']
-        why_ta = request.POST['course_description']
+        why_ta = request.POST['why_ta']
         c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
         c.save()
         return redirect('/view_apps/')

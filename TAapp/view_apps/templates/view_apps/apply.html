@@ -14,29 +14,30 @@
 <body>
    <form class="" method="POST" action="{% url 'view_apps:apply' %}">
        {% csrf_token %}
+        <input type="hidden" name="courseID" id="courseID" value="{{courseID}}" />
         <div class="container">
             <div class="title">TA Application</div>
             <form action="#">
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">What is your name?</span>
-                        <input type="text" placeholder="Enter your name" required>
+                        <input name = "name" type="text" placeholder="Enter your name" required>
                     </div>
                     <div class="input-box">
                         <span class="details">What is your Eagle ID?</span>
-                        <input type="text" placeholder="Enter your Eagle ID" required>
+                        <input name = "eagleID" type="text" placeholder="Enter your Eagle ID" required>
                     </div>
                     <div class="input-box">
                         <span class="details">How much time per week can you comfortably commit to this role?</span>
-                        <input type="number" placeholder="Enter your time commitment" required>
+                        <input name = "office_hours" type="number" placeholder="Enter your time commitment" required>
                     </div>
                     <div class="input-box">
                         <span class="details">What is your major?</span>
-                        <input type="text" placeholder="Enter your major" required>
+                        <input name = "major" type="text" placeholder="Enter your major" required>
                     </div>
                     <div class="input-box">
                         <span class="details">Why do you want to be a TA for this class?</span>
-                        <textarea placeholder="Enter your response" required></textarea>
+                        <textarea name = "why_ta" placeholder="Enter your response" required></textarea>
                     </div>
                     <div class="file">
                         <span class="details">Optional: upload any supporting documents I.e. resume or cover letter</span>
