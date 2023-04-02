@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 
 <link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
 
@@ -9,66 +9,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creation</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <form class="" method="POST" action="{% url 'view_apps:create_course' %}">
-        {% csrf_token %}
-    <div>
-        <label for="name">What is your name?</label>
-        <input type="text" name="name" id="name" required>
-    </div>
-    <div>
-        <label for="email">What is your email?</label>
-        <input type="email" name="email" id="email" required>
-    </div>
-    <div>
-        <label for="course_name">What is the course Name</label>
-        <input type="text" name="course_name" id="course_name" required>
-    </div>
-    <div>
-        <label for="course_description">Can you provide the course description?</label>
-        <textarea id="course_description" name="course_description" required></textarea>
-    </div>
-    <div>
-        <label for="prerequisites">What are the prerequisites?</label>
-        <textarea id="prerequisites" name="prerequisites"></textarea>
-    </div>
-    <div>
-        <label for="sections">Number of Sections</label>
-        <input type="number" name="sections" id="sections" min="1" max="5" required>
-    </div>
-    <div>
-        <label for="TAs">Number of TAs</label>
-        <input type="number" name="TAs" id="TAs" min="1" max="10" required>
-    </div>
-    <div>
-        <label for="office_hours">Amount of Office Hours per Week</label>
-        <input type="number" name="office_hours" id="office_hours" min="2" max="10" required>
-    </div>
-    <div>
-        Discussion Sections
-        <div>
-            <label for="yes">Yes</label>
-            <input type="radio" name="disc" id="yes" value="yes" required>
-        </div>
-        <div>
-            <label for="no">No</label>
-            <input type="radio" name="disc" id="no" value="no" required>
-        </div>
-    </div>
-    <div>
-        Meetings
-        <div>
-            <label for="yes">Yes</label>
-            <input type="radio" name="meet" id="yes1" value="In-person" required>
-        </div>
-        <div>
-            <label for="no">No</label>
-            <input type="radio" name="meet" id="no1" value="Asynchronous" required>
-        </div>
-    </div>
-    <button type="reset">Reset</button>
-    <button type="submit">Submit</button>
+    <div class="container">
+        <div class="title">Course Creation</div>
+        <form action="professor.html" method="GET">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">What is your name?</span>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">What is your email?</span>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">What is the course name?</span>
+                    <input type="text" placeholder="Enter the course name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Can you describce the course?</span>
+                    <textarea placeholder="Enter the course description" required></textarea>
+                </div>
+                <div class="input-box">
+                    <span class="details">What are the prerequisites?</span>
+                    <textarea placeholder="Enter the prerequisites" required></textarea>
+                </div>
+                <div class="input-box">
+                    <span class="details">Number of sections</span>
+                    <input type="number" placeholder="Enter the number of sections" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Number of TAs</span>
+                    <input type="number" placeholder="Enter the number of TAs" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Amount of office hours per week</span>
+                    <input type="number" placeholder="Enter the number of office hours" required>
+                </div>
+
+                <div class="radio-details">
+                    <input type="radio" name="disc" id="dot-1">
+                    <input type="radio" name="disc" id="dot-2">
+                    <span class="radio-title">Discussion Sections</span>
+                    <div class="category">
+                      <label for="dot-1">
+                      <span class="dot one"></span>
+                      <span class="disc">Yes</span>
+                        </label>
+                    <label for="dot-2">
+                      <span class="dot two"></span>
+                      <span class="disc">No</span>
+                    </label>
+                    </div>
+                </div>
+
+                <div class="radio-details">
+                    <input type="radio" name="meet" id="dot-3">
+                    <input type="radio" name="meet" id="dot-4">
+                    <span class="radio-title">Meetings</span>
+                    <div class="meet">
+                    <label for="dot-3">
+                        <span class="dot three"></span>
+                        <span class="meeting">In-person</span>
+                    </label>
+                    <label for="dot-4">
+                        <span class="dot four"></span>
+                        <span class="meeting">Asynchronous</span>
+                    </label>
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
+                
     </form>
 </body>
 </html>
