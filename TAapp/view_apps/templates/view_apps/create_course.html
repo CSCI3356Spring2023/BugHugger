@@ -1,6 +1,6 @@
 <!-- {% load static %} -->
 
-<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+<link rel="stylesheet" href="{% static 'view_apps/forms.css' %}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,51 +14,60 @@
 <body>
     <div class="container">
         <div class="title">Course Creation</div>
-        <form action="professor.html" method="GET">
+        <form class="" method="POST" action="{% url 'view_apps:create_course' %}">
+            {% csrf_token %}
             <div class="user-details">
                 <div class="input-box">
-                    <span class="details">What is your name?</span>
-                    <input type="text" placeholder="Enter your name" required>
+                    <span for = "name" class="details">What is your name?</span>
+                    <input name = "name" type="text" placeholder="Enter your name" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">What is your email?</span>
-                    <input type="email" placeholder="Enter your email" required>
+                    <span for = "email" class="details">What is your email?</span>
+                    <input name = "email" type="email" placeholder="Enter your email" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">What is the course name?</span>
-                    <input type="text" placeholder="Enter the course name" required>
+                    <span for = "course_name" class="details">What is the course name?</span>
+                    <input name = "course_name" type="text" placeholder="Enter the course name" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Can you describce the course?</span>
-                    <textarea placeholder="Enter the course description" required></textarea>
+                    <span for = "course_id" class="details">What is the course ID?</span>
+                    <input name = "course_id"  type="text" placeholder="Enter the course ID" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">What are the prerequisites?</span>
-                    <textarea placeholder="Enter the prerequisites" required></textarea>
+                    <span for = "time_text" class="details">When is the course?</span>
+                    <input name = "time_text" type="text" placeholder="Enter the course time" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Number of sections</span>
-                    <input type="number" placeholder="Enter the number of sections" required>
+                    <span for="course_description" class="details">Can you describe the course?</span>
+                    <textarea name="course_description" placeholder="Enter the course description" required></textarea>
                 </div>
                 <div class="input-box">
-                    <span class="details">Number of TAs</span>
-                    <input type="number" placeholder="Enter the number of TAs" required>
+                    <span for = "num_sections" class="details">Number of sections</span>
+                    <input name = "num_sections" type="number" placeholder="Enter the number of sections" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Amount of office hours per week</span>
-                    <input type="number" placeholder="Enter the number of office hours" required>
+                    <span for = "section" class="details">Number of sections</span>
+                    <input name = "section" type="number" placeholder="Enter the number of sections" required>
+                </div>
+                <div class="input-box">
+                    <span for = "TAs" class="details">Number of TAs</span>
+                    <input name = "TAs" type="number" placeholder="Enter the number of TAs" required>
+                </div>
+                <div class="input-box">
+                    <span for = "office_hours" class="details">Amount of office hours per week</span>
+                    <input name = "office_hours" type="number" placeholder="Enter the number of office hours" required>
                 </div>
 
                 <div class="radio-details">
-                    <input type="radio" name="disc" id="dot-1">
-                    <input type="radio" name="disc" id="dot-2">
+                    <input type="radio" name="disc" value = "yes" id="dot-1">
+                    <input type="radio" name="disc" value = "no" id="dot-2">
                     <span class="radio-title">Discussion Sections</span>
                     <div class="category">
-                      <label for="dot-1">
+                      <label for = "dot-1">
                       <span class="dot one"></span>
                       <span class="disc">Yes</span>
                         </label>
-                    <label for="dot-2">
+                    <label for = "dot-2">
                       <span class="dot two"></span>
                       <span class="disc">No</span>
                     </label>
@@ -66,15 +75,15 @@
                 </div>
 
                 <div class="radio-details">
-                    <input type="radio" name="meet" id="dot-3">
-                    <input type="radio" name="meet" id="dot-4">
+                    <input type="radio" name="meet" value = "yes" id="dot-3">
+                    <input type="radio" name="meet" value = "no" id="dot-4">
                     <span class="radio-title">Meetings</span>
                     <div class="meet">
-                    <label for="dot-3">
+                    <label for = "dot-3">
                         <span class="dot three"></span>
                         <span class="meeting">In-person</span>
                     </label>
-                    <label for="dot-4">
+                    <label for = "dot-4">
                         <span class="dot four"></span>
                         <span class="meeting">Asynchronous</span>
                     </label>

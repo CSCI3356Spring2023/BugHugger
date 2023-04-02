@@ -1,6 +1,6 @@
 <!-- {% load static %} -->
 
-<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+<link rel="stylesheet" href="{% static 'view_apps/forms.css' %}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,8 @@
     <title>TA Application</title>
 </head>
 <body>
-    <form class="submission-form" action="student.html" method="GET">
+   <form class="" method="POST" action="{% url 'view_apps:apply' %}">
+       {% csrf_token %}
         <div class="container">
             <div class="title">TA Application</div>
             <form action="#">
