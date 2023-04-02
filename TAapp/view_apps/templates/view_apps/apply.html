@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 
 <link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
 
@@ -8,38 +8,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>TA Application</title>
 </head>
 <body>
-    <form class="" method="POST" action="{% url 'view_apps:apply' %}">
-        {% csrf_token %}
-    <input type="hidden" name="courseID" id="courseID" value="{{courseID}}" />
-    <div>
-        <label for="name">What is your name?</label>
-        <input type="text" name="name" id="name" required>
-    </div>
-    <div>
-        <label for="eagleID">What is your Eagle ID?</label>
-        <input type="text" name="eagleID" id="eagleID" required>
-    </div>
-    <div>
-        <label for="office_hours">How much time per week can you comfortably commit to this role?</label>
-        <input type="number" name="office_hours" id="office_hours" min="2" max="15" required>
-    </div>
-    <div>
-        <label for="major">What is your major?</label>
-        <input type="text" name="major" id="major" required>
-    </div>
-    <div>
-        <label for="course_description">Why do you want to be a TA for this class?</label>
-        <textarea id="course_description" name="course_description"></textarea>
-    </div>
-    <div>
-        <label for="file">Optional: upload any supporting documents I.e. resume or cover letter</label>
-        <input id="file" type="file" name="file">
-    </div>
-    <button type="reset">Reset</button>
-    <button type="submit">Submit</button>
-    </form>
+    <form class="submission-form" action="student.html" method="GET">
+        <div class="container">
+            <div class="title">TA Application</div>
+            <form action="#">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">What is your name?</span>
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">What is your Eagle ID?</span>
+                        <input type="text" placeholder="Enter your Eagle ID" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">How much time per week can you comfortably commit to this role?</span>
+                        <input type="number" placeholder="Enter your time commitment" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">What is your major?</span>
+                        <input type="text" placeholder="Enter your major" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Why do you want to be a TA for this class?</span>
+                        <textarea placeholder="Enter your response" required></textarea>
+                    </div>
+                    <div class="file">
+                        <span class="details">Optional: upload any supporting documents I.e. resume or cover letter</span>
+                        <input type="file" placeholder="Upload your file">
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+</form>
 </body>
 </html>
