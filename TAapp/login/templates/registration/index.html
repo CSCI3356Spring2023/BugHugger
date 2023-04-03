@@ -12,16 +12,16 @@
 
 <nav>
     <a href="http://services.bc.edu">
-        <image src="..\static\images\logo-1.png" alt="Boston College logo" width="150px"/>
+        <image src="{% static 'images\logo-1.png' %}" alt="Boston College logo" width="150px"/>
     </a>
-    <a href="{%url 'login:create_student' %}" class="create">
+        <a href="{%url 'login:create_student' %}" class="create">
         <image src="{% static 'images\user.png' %}" alt="new user icon" width="30px"/>
-        <p>Create Student Account</p>
-    </a>
-    <a href="{%url 'login:create_professor' %}" class="create">
+            <p>Create Student Account</p>
+        </a>
+        <a href="{%url 'login:create_professor' %}" class="create">
         <image src="{% static 'images\user.png' %}" alt="new user icon" width="30px"/>
-        <p>Create Professor Account</p>
-    </a>
+            <p>Create Professor Account</p>
+        </a>
 </nav>
 
 {%block content%}
