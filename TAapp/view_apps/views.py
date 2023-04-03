@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth import logout #Added by Aidan
 from .models import Course, App
 from datetime import datetime
 from django.core.mail import send_mail
@@ -76,3 +76,8 @@ def apply(request):
     # latest_course_list = Course.objects.all()
     context={"courseID": courseID}
     return render(request, 'view_apps/apply.html', context)
+
+#Function added by Aidan
+def logoff(request):
+    logout(request)
+    return redirect('login')
