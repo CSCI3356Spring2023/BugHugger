@@ -9,23 +9,54 @@ body {
 
 nav {
     width: 100%;
-    display: inline-grid;
-    grid-template-columns: 150px auto;
     box-shadow: 0px 5px 10px;
+    display: grid;
+    grid-template-columns: auto auto;
     background-color: maroon;
 }
 
-nav * {
-    padding: 5px;
-    padding-bottom: 0px;
+.logo image{
+    padding-top: 15px;
+    padding-left: 15px;
 }
+
+.dropbtn {
+    text-align: center;
+    text-decoration: none;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.dropbtn p {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.dropdown {
+    justify-self: right;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position:absolute;
+    background-color: maroon;
+    border-radius: 3px;
+    padding: 5px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 
 .create {
     text-decoration: none;
     font-size: 11px;
     color: burlywood;
     text-align: center;
-    justify-self: right;
     padding-right: 5px;
 }
 
