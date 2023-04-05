@@ -19,7 +19,6 @@ form {
     display: grid;
     grid-template-columns: auto;
     margin-top: 15px;
-    padding-left: 30px;
 }
 
 form input {

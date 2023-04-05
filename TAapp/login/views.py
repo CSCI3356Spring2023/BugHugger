@@ -31,6 +31,7 @@ def user_create_student(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
+            p.user = user
             login(request, user)
             return redirect('/view_apps/')
     else:
@@ -40,14 +41,16 @@ def user_create_student(request):
         'form': form,
         'profile': profile
     })
+    
 def user_create_professor(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST, instance=request.user)
-        profile = ProfProfileForm(request.POST, instance=request.user.prof_profile)
+        form = UserCreationForm(request.POST)
+        profile = ProfProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
             f = form.save()
             f.save()
             p = form.save()
+            p.user = f
             p.save()
             user_group = Group.objects.get(name='Professor')
             f.groups.add(user_group)
