@@ -1,0 +1,11 @@
+{% extends 'registration/index.html' %}
+
+{% block content %}
+
+<form class="" method="POST" action="{% url 'login:prof_profile' %}">
+    <h3>Edit Profile</h3>
+    {{ form }}
+    <input type="submit">
+</form>
+
+{% endblock %}

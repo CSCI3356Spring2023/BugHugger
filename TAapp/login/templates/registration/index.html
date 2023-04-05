@@ -13,14 +13,15 @@
 <nav>
     <a class ="logo" href="http://services.bc.edu">
         <image src="{% static 'images\logo-1.png' %}" alt="Boston College logo" width="150px"/>
+    </a>
     <div class ="dropdown">
         <div class="dropbtn">
             <image src="{% static 'images\user.png' %}" alt="new user icon" width="30px"/>
             <p>Create Account</p>
         </div>
         <div class="dropdown-content">
-            <a href="{%url 'login:create_professor' %}" class="create">Professor Account</a><br>
-            <a href="{%url 'login:create_student' %}" class="create">Student Account</a>
+            <a href="{%url 'login:create_professor' %}" class="create">Professor</a><br>
+            <a href="{%url 'login:create_student' %}" class="create">Student</a><br>
         </div>
     </div>
 </nav>

@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 
+from login.forms import ProfProfileForm, StudProfileForm
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -17,10 +19,13 @@ def login_user(request):
 
 def user_create_student(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
+        form = UserCreationForm(request.POST, instance=request.user)
+        profile = StudProfileForm(request.POST, instance=request.user.prof_profile)
+        if form.is_valid() and profile.is_valid():
             f = form.save()
             f.save()
+            p = form.save()
+            p.save()
             user_group = Group.objects.get(name='Student')
             f.groups.add(user_group)
             username = form.cleaned_data['username']
@@ -30,15 +35,20 @@ def user_create_student(request):
             return redirect('/view_apps/')
     else:
         form = UserCreationForm()
+        profile = StudProfileForm()
     return render(request, 'registration/create_student.html', {
         'form': form,
+        'profile': profile
     })
 def user_create_professor(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
+        form = UserCreationForm(request.POST, instance=request.user)
+        profile = ProfProfileForm(request.POST, instance=request.user.prof_profile)
+        if form.is_valid() and profile.is_valid():
             f = form.save()
             f.save()
+            p = form.save()
+            p.save()
             user_group = Group.objects.get(name='Professor')
             f.groups.add(user_group)
             username = form.cleaned_data['username']
@@ -48,6 +58,8 @@ def user_create_professor(request):
             return redirect('/view_apps/')
     else:
         form = UserCreationForm()
+        profile = ProfProfileForm()
     return render(request, 'registration/create_professor.html', {
         'form': form,
+        'profile': profile
     })

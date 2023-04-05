@@ -15,20 +15,40 @@ nav {
     background-color: maroon;
 }
 
-.logo image{
-    padding-top: 15px;
-    padding-left: 15px;
+form {
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 15px;
+    padding-left: 30px;
+}
+
+form input {
+    max-width: 200px;
+}
+
+form * {
+    margin: 5px 0px;
+}
+
+form #submit {
+    margin: auto auto;
+}
+
+.logo {
+    text-decoration: none;
+    color: burlywood;
+    padding: 15px
 }
 
 .dropbtn {
     text-align: center;
     text-decoration: none;
-    padding-right: 10px;
+    padding-right: 15px;
     padding-top: 10px;
 }
 
 .dropbtn p {
-    margin: 0px;
+    margin-top: 0px;
     margin-bottom: 10px;
 }
 
@@ -36,6 +56,7 @@ nav {
     justify-self: right;
     position: relative;
     display: inline-block;
+    color: burlywood;
 }
 
 .dropdown-content {
@@ -43,8 +64,14 @@ nav {
     position:absolute;
     background-color: maroon;
     border-radius: 3px;
+    min-width: 80px;
     padding: 5px;
     z-index: 1;
+    box-shadow: 3px 3px 5px;
+}
+
+.dropdown:hover {
+    color: white;
 }
 
 .dropdown:hover .dropdown-content {
@@ -56,30 +83,32 @@ nav {
     text-decoration: none;
     font-size: 11px;
     color: burlywood;
-    text-align: center;
-    padding-right: 5px;
+    justify-self: left;
 }
 
-.create p {
-    margin-top: 0px;
+.create:hover {
+    color:white;
 }
 
 .login {
     width: 300px;
     margin: 0 auto;
-    margin-top: 10%;
-    border: 5px solid maroon;
-    border-radius: 25px;
+    margin-top: 20%;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px;
 }
 
 .login h3 {
+    font-family: 'Times New Roman', Times, serif;
     background: maroon;
     color: burlywood;   
     margin: 0 auto;
     margin-bottom: 40px;
     width: 250px;
     padding: 25px;
-    border-radius: 15px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     align-self: center;
     text-align: center;
 }
@@ -118,7 +147,7 @@ nav {
     margin-bottom: 40px;
     width: 250px;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 10pxu;
     align-self: center;
     text-align: center;
 }

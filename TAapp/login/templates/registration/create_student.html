@@ -6,7 +6,9 @@
     {% csrf_token %}
     <h3>Create Account</h3>
     {{ form }}
-    <input type="submit">
+    <h3>Edit Profile</h3>
+    {{ profile }}
+    <input type="submit" id="submit">
 </form>
 
 {% endblock %}
