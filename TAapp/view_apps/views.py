@@ -69,6 +69,8 @@ def apply(request):
         office_hours = request.POST['office_hours']
         major = request.POST['major']
         why_ta = request.POST['why_ta']
+        print(App.objects.values())
+        if App.objects.filter(eagle_id=eagle_id).count()>4: return render(request, 'view_apps/too_many_apps.html', context)
         c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
         c.save()
         return redirect('/view_apps/')
@@ -76,6 +78,7 @@ def apply(request):
     # latest_course_list = Course.objects.all()
     context={"courseID": courseID}
     return render(request, 'view_apps/apply.html', context)
+
 
 #Function added by Aidan
 def logoff(request):

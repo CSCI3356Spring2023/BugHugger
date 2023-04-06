@@ -1,0 +1,11 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
+<div class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>User: {{request.user.username}}</p>
+</div>
+<div>
+    You may not apply to more than 5 courses. Please wait to hear back on your existing applications.
+</div>
