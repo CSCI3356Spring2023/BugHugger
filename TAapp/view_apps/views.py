@@ -69,7 +69,7 @@ def apply(request):
         office_hours = request.POST['office_hours']
         major = request.POST['major']
         why_ta = request.POST['why_ta']
-        print(App.objects.values())
+        #print(App.objects.values())
         if App.objects.filter(eagle_id=eagle_id).count()>4: return render(request, 'view_apps/too_many_apps.html', context)
         c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
         c.save()
