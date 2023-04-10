@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+TAapp/view_apps/templates/.DS_Store
