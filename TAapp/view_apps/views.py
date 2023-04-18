@@ -70,7 +70,7 @@ def apply(request):
         major = request.POST['major']
         why_ta = request.POST['why_ta']
         #print(App.objects.values())
-        if App.objects.filter(eagle_id=eagle_id).count()>4: return render(request, 'view_apps/too_many_apps.html', context)
+        if App.objects.filter(eagle_id=eagle_id).count()>4: return render(request, 'view_apps/too_many_apps.html')
         c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
         c.save()
         return redirect('/view_apps/')

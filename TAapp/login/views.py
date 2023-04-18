@@ -19,8 +19,8 @@ def login_user(request):
 
 def user_create_student(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST, instance=request.user)
-        profile = StudProfileForm(request.POST, instance=request.user.prof_profile)
+        form = UserCreationForm(request.POST)
+        profile = StudProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
             f = form.save()
             f.save()

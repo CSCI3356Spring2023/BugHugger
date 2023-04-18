@@ -10,6 +10,7 @@ class Prof_profile(models.Model):
     department = models.CharField(max_length=60, blank=True)
     email = models.EmailField(max_length=60, blank=True)
 
+
 class Stud_profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=60, blank=True)
