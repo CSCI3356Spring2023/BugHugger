@@ -15,7 +15,8 @@ def index(request):
     user = request.user
     if is_student(user):
         course_list = Course.objects.all()
-        context = {'course_list': course_list}
+        app = App.objects.get(user=user)
+        context = {'course_list': course_list,'app': app}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
         course_list = Course.objects.all().filter(assigned_to_email = user.username)
@@ -63,20 +64,27 @@ def create_course(request):
         return render(request, 'view_apps/create_course.html')
 
 def apply(request):
+    MAX_APPLICATIONS = 5
     if request.method == "POST":
-        course_id = request.POST['courseID']
-        student_name = request.POST['name']
-        eagle_id = request.POST['eagleID']
-        office_hours = request.POST['office_hours']
-        major = request.POST['major']
-        why_ta = request.POST['why_ta']
-        #print(App.objects.values())
-        if App.objects.filter(eagle_id=eagle_id).count()>4: return render(request, 'view_apps/too_many_apps.html')
-        c = App(course_id, student_name, eagle_id, office_hours, major, why_ta)
-        c.save()
+        user=request.user
+        if App.objects.filter(user=user).exists():
+            c = App.objects.get(user=user)
+            num_uses = c.num_uses + 1
+            course_id = request.POST['courseID']
+            office_hours = request.POST['office_hours']
+            why_ta = request.POST['why_ta']
+            if num_uses > MAX_APPLICATIONS: return render(request, 'view_apps/too_many_apps.html')
+            else: App.objects.filter(user=user).update(num_uses = num_uses, course_id = course_id, office_hours=office_hours, why_ta=why_ta)
+        else:
+            num_uses = 1
+            user = request.user
+            course_id = request.POST['courseID']
+            office_hours = request.POST['office_hours']
+            why_ta = request.POST['why_ta']
+            c = App(user=user, course_id=course_id, office_hours=office_hours, why_ta=why_ta, num_uses=num_uses)
+            c.save()
         return redirect('/view_apps/')
     courseID = request.GET['courseID'] if 'courseID' in request.GET else 9999
-    # latest_course_list = Course.objects.all()
     context={"courseID": courseID}
     return render(request, 'view_apps/apply.html', context)
 

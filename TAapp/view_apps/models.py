@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Course(models.Model):
     course_title = models.CharField(max_length=100)
@@ -18,16 +20,15 @@ class Course(models.Model):
     def __str__(self):
         return self.course_id
 class App(models.Model):
-    course_id = models.CharField(max_length=15)
-    student_name = models.CharField(max_length=100)
-    eagle_id = models.CharField(max_length=15)
-    office_hours = models.CharField(max_length=15)
-    major = models.CharField(max_length=200)
-    why_ta = models.CharField(max_length=500)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default = 1)
+    course_id = models.CharField(max_length=15, blank=True)
+    office_hours = models.CharField(max_length=15, blank=True)
+    why_ta = models.CharField(max_length=500, blank=True)
+    num_uses = models.IntegerField(default=0)
     # TODO: file
     # models.FileField(upload_to='PLACE_HERE')
 
     def __str__(self):
-        return self.student_name
+        return self.user.username
 
 
