@@ -78,7 +78,7 @@ def apply(request, id):
                 #IMPORTANT: Assuming course_id is unique
                 App.objects.filter(user=user).update(num_uses = num_uses, office_hours=office_hours, why_ta=why_ta)
                 current_apps = Course.objects.get(course_id=course_id).applications
-                current_apps += " username"
+                current_apps += " " + user.username
                 Course.objects.filter(course_id = course_id).update(applications = current_apps)
         else:
             num_uses = 1
@@ -89,7 +89,7 @@ def apply(request, id):
             c = App(user=user, office_hours=office_hours, why_ta=why_ta, num_uses=num_uses)
             # IMPORTANT: Assuming course_id is unique
             current_apps = Course.objects.get(course_id=course_id).applications
-            current_apps += " username"
+            current_apps += " " + user.username
             Course.objects.filter(course_id=course_id).update(applications=current_apps)
             c.save()
         return redirect('/view_apps/')
