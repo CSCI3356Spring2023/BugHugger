@@ -28,6 +28,6 @@ class App(models.Model):
     # models.FileField(upload_to='PLACE_HERE')
 
     def __str__(self):
-        return self.eagle_id
+        return self.student_name
 
 

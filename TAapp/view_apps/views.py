@@ -3,12 +3,13 @@ from django.contrib.auth import logout #Added by Aidan
 from .models import Course, App
 from datetime import datetime
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
+from login.models import Prof_profile, Stud_profile
+
 
 def is_student(user):
-    return user.groups.filter(name='Student').exists()
+    return Stud_profile.objects.filter(user=user).exists()
 def is_professor(user):
-    return user.groups.filter(name='Professor').exists()
+    return Prof_profile.objects.filter(user=user).exists()
 
 def index(request):
     user = request.user
