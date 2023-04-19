@@ -37,7 +37,7 @@
             </div>
             <div> {{ course.description_text }} </div>
             <p class = "apply-button">
-                <a href="{%url 'view_apps:apply'%}">
+                <a href="{%url 'view_apps:apply' course.course_id%}">
                     <p>Submit Application</p>
                 </a>
             </p>

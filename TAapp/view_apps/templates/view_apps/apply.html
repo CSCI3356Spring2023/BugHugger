@@ -12,7 +12,7 @@
     <title>TA Application</title>
 </head>
 <body>
-   <form class="" method="POST" action="{% url 'view_apps:apply' %}">
+   <form class="" method="POST" action="{% url 'view_apps:apply' id%}">
        {% csrf_token %}
         <input type="hidden" name="courseID" id="courseID" value="{{courseID}}" />
         <div class="container">
