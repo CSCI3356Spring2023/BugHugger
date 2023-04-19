@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
+<nav class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>Professor User: {{request.user.username}}</p>
+    <p class="logoff-button">
+        <a href="{%url 'view_apps:logoff' %}">Log off</a>
+    </p>
+</nav>
+<div class = "interface-container">
+    <p> My Courses </p>
+    <p> </p>
+        <a href="{%url 'view_apps:professor' %}" > Go Back</a>
+</div>
+{% if applications_list %}
+    APPLICATIONS for {{id}}
+    {% for application in applications_list %}
+        <div>
+            {{application.user.username}}
+            {{application.office_hours}}
+            {{application.why_ta}}
+        </div>
+    {% endfor %}
+{% endif %}

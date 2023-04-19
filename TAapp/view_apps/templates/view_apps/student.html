@@ -19,6 +19,7 @@
 {% if course_list %}
     <div class = "course-container">
     {% for course in course_list %}
+        {% if course not in applied_course_list %}
         <div class = "course">
             <div class = "course-title">{{ course.course_title }} </div>
             <div class = "course-inner">
@@ -40,6 +41,36 @@
                 <a href="{%url 'view_apps:apply' course.course_id%}">
                     <p>Submit Application</p>
                 </a>
+            </p>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% else %}
+    <p>No courses are available.</p>
+{% endif %}
+{% if applied_course_list %}
+    <div class = "course-container">
+    {% for course in applied_course_list %}
+        <div class = "course">
+            <div class = "course-title">{{ course.course_title }} </div>
+            <div class = "course-inner">
+                <div>
+                    <p> ID: {{ course.course_id }} </p>
+                    <p> Professor: {{ course.professor_text }} </p>
+                    <p> Time: {{ course.time_text }} </p>
+                    <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                </div>
+                <div>
+                    <p> Discussions: {{ course.has_discussion }} </p>
+                    <p> Meetings: {{ course.has_meetings }} </p>
+                    <p> Office Hours: {{ course.num_office_hours }} / Week </p>
+                    <p> No. TAs: {{ course.num_tas }} </p>
+                </div>
+            </div>
+            <div> {{ course.description_text }} </div>
+            <p class = "apply-button">
+                    <p>APPLIED</p>
             </p>
         </div>
     {% endfor %}

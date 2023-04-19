@@ -8,18 +8,25 @@ from login.models import Prof_profile, Stud_profile
 
 
 def is_student(user):
-    return Stud_profile.objects.filter(user=user).exists()
+    return user.groups.filter(name='Student').exists()
 def is_professor(user):
-    return Prof_profile.objects.filter(user=user).exists()
+    return user.groups.filter(name='Professor').exists()
 
 def index(request):
     user = request.user
     if is_student(user):
         course_list = Course.objects.all()
-        if App.objects.order_by('-num_uses').exists():
-            app = App.objects.order_by('-num_uses')[0]
-        else: app = 0
-        context = {'course_list': course_list,'app': app}
+        if App.objects.all().filter(user=user).exists():
+            apps = App.objects.all().filter(user=user)
+            applied_course_list = []
+            for c in course_list:
+                for a in apps:
+                    if a.id in c.applications:
+                        applied_course_list.append(c)
+
+        else:
+            apps = 0
+        context = {'course_list': course_list,'apps': apps, 'applied_course_list': applied_course_list}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
         course_list = Course.objects.all().filter(assigned_to_email = user.username)
@@ -30,6 +37,15 @@ def index(request):
         context = {'course_list': course_list}
         return render(request, 'view_apps/professor.html', context)
 
+def applications(request, id):
+    user = request.user
+    applications_id_list = Course.objects.all().get(course_id=id).applications.split()
+    applications_list = []
+    for a in applications_id_list:
+        if App.objects.all().filter(id = a).exists():
+            applications_list.append(App.objects.all().get(id = a))
+    context = {"applications_list": applications_list, "id": id}
+    return render(request, 'view_apps/applications.html', context)
 def create_course(request):
     if request.method == "POST":
         email = request.user.username

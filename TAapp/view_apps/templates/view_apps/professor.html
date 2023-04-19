@@ -5,13 +5,13 @@
 <nav class = "header-container">
     <p>Boston College TA Application System</p>
     <p>Professor User: {{request.user.username}}</p>
-    <p class="logoff-button"> #Added this
-        <a href="{%url 'view_apps:logoff' %}">Log off</a> #Added this
-    </p> #Added this
+    <p class="logoff-button">
+        <a href="{%url 'view_apps:logoff' %}">Log off</a>
+    </p>
 </nav>
 <div class = "interface-container">
     <p> My Courses </p>
-    <p> Applications Remaining</p>
+    <p> </p>
         <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
 </div>
 {% if course_list %}
@@ -35,7 +35,7 @@
             </div>
             <div> {{ course.description_text }} </div>
             <p class = "apply-button">
-                <a href="{%url 'view_apps:apply' %}">
+                <a href="{%url 'view_apps:applications' course.course_id%}">
                     <p>View Applications</p>
                 </a>
             </p>

@@ -26,7 +26,7 @@ class App(models.Model):
     office_hours = models.CharField(max_length=15, blank=True)
     why_ta = models.CharField(max_length=500, blank=True)
     num_uses = models.IntegerField(default=0)
-    id = models.CharField(max_length = 1000, primary_key=True, default=str(a), )
+    id = models.CharField(max_length = 1000, primary_key = True, default=str(a), )
     # TODO: file
     # models.FileField(upload_to='PLACE_HERE')
 
