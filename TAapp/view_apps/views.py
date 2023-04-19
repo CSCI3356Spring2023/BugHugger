@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from login.models import Prof_profile, Stud_profile
 
 
+
 def is_student(user):
     return Stud_profile.objects.filter(user=user).exists()
 def is_professor(user):
@@ -15,7 +16,9 @@ def index(request):
     user = request.user
     if is_student(user):
         course_list = Course.objects.all()
-        app = App.objects.get(user=user)
+        if App.objects.order_by('-num_uses').exists():
+            app = App.objects.order_by('-num_uses')[0]
+        else: app = 0
         context = {'course_list': course_list,'app': app}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
@@ -68,18 +71,19 @@ def apply(request, id):
     if request.method == "POST":
         user=request.user
         if App.objects.filter(user=user).exists():
-            c = App.objects.get(user=user)
-            num_uses = c.num_uses + 1
+            c = App.objects.filter(user=user).count()
+            num_uses = c + 1
             course_id = id
             office_hours = request.POST['office_hours']
             why_ta = request.POST['why_ta']
             if num_uses > MAX_APPLICATIONS: return render(request, 'view_apps/too_many_apps.html')
             else:
                 #IMPORTANT: Assuming course_id is unique
-                App.objects.filter(user=user).update(num_uses = num_uses, office_hours=office_hours, why_ta=why_ta)
+                c = App(user=user, num_uses = num_uses, office_hours=office_hours, why_ta=why_ta)
                 current_apps = Course.objects.get(course_id=course_id).applications
-                current_apps += " " + user.username
+                current_apps += " " + c.id
                 Course.objects.filter(course_id = course_id).update(applications = current_apps)
+                c.save()
         else:
             num_uses = 1
             user = request.user
@@ -89,7 +93,7 @@ def apply(request, id):
             c = App(user=user, office_hours=office_hours, why_ta=why_ta, num_uses=num_uses)
             # IMPORTANT: Assuming course_id is unique
             current_apps = Course.objects.get(course_id=course_id).applications
-            current_apps += " " + user.username
+            current_apps += " " + c.id
             Course.objects.filter(course_id=course_id).update(applications=current_apps)
             c.save()
         return redirect('/view_apps/')
