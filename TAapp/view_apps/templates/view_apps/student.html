@@ -11,7 +11,7 @@
 </nav>
 <div class = "interface-container">
     <p> My Courses </p>
-    <p> Applications Submitted: {{app.num_uses}} / 5</p>
+    <p> Applications Submitted: {{apps}} / 5</p>
     <p class = "filter-button">
         <a> Filter Courses</a>
     </p>
@@ -76,5 +76,5 @@
     {% endfor %}
     </div>
 {% else %}
-    <p>No courses are available.</p>
+    <p>No courses applied to.</p>
 {% endif %}

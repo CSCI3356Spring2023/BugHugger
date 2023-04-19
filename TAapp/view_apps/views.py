@@ -3,6 +3,7 @@ from django.contrib.auth import logout #Added by Aidan
 from .models import Course, App
 from datetime import datetime
 from django.core.mail import send_mail
+import random
 from login.models import Prof_profile, Stud_profile
 
 
@@ -25,8 +26,9 @@ def index(request):
                         applied_course_list.append(c)
 
         else:
-            apps = 0
-        context = {'course_list': course_list,'apps': apps, 'applied_course_list': applied_course_list}
+            apps = []
+            applied_course_list = []
+        context = {'course_list': course_list,'apps': len(apps), 'applied_course_list': applied_course_list}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
         course_list = Course.objects.all().filter(assigned_to_email = user.username)
@@ -95,7 +97,8 @@ def apply(request, id):
             if num_uses > MAX_APPLICATIONS: return render(request, 'view_apps/too_many_apps.html')
             else:
                 #IMPORTANT: Assuming course_id is unique
-                c = App(user=user, num_uses = num_uses, office_hours=office_hours, why_ta=why_ta)
+                a = random.randint(10000000, 99999999)
+                c = App(user=user, num_uses = num_uses, office_hours=office_hours, why_ta=why_ta, id = str(a))
                 current_apps = Course.objects.get(course_id=course_id).applications
                 current_apps += " " + c.id
                 Course.objects.filter(course_id = course_id).update(applications = current_apps)
@@ -106,7 +109,8 @@ def apply(request, id):
             course_id = id
             office_hours = request.POST['office_hours']
             why_ta = request.POST['why_ta']
-            c = App(user=user, office_hours=office_hours, why_ta=why_ta, num_uses=num_uses)
+            a = random.randint(10000000, 99999999)
+            c = App(user=user, office_hours=office_hours, why_ta=why_ta, num_uses=num_uses, id = str(a))
             # IMPORTANT: Assuming course_id is unique
             current_apps = Course.objects.get(course_id=course_id).applications
             current_apps += " " + c.id
