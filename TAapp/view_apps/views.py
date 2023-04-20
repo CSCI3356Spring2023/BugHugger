@@ -6,7 +6,18 @@ from django.core.mail import send_mail
 import random
 from login.models import Prof_profile, Stud_profile
 
-
+#variables for course names
+COURSE_NAMES = ["Computer Science I", "Computer Science II", "Object Oriented Design",
+                "Algorithms", "Logic and Computation", "Randomness and Computation", "Robotics",
+                "Computer Vision", "Natural Language Processing", "Web Application Development",
+                "Computer Science I Honors", ]
+#variables for course IDs
+COURSE_IDS = ["CSCI1101", "CSCI1102", "CSCI3353", "CSCI3383", "CSCI2243", "CSCI2244", "CSCI3347",
+                "CSCI3343", "CSCI3349", "CSCI2254","CSCI1103", ]
+#variables for course times
+COURSE_TIMES = ["MWF 9-9:50", "MWF 10-10:50", "MWF 11-11:50", "MWF 12-12:50", "MWF 1-1:50", "MWF 2-2:50",
+                "MWF 3-3:50", "MWF 4-4:50", "MW 3-4:15","MW 4:30-6:15", "TTH 9-10:15", "TTH 10:30-11:45", "TTH 12-1:15",
+                "TTH 1:30-2:45", "TTH 3-4:15", "TTH 4:30-5:45", ]
 
 def is_student(user):
     return user.groups.filter(name='Student').exists()
@@ -24,7 +35,6 @@ def index(request):
                 for a in apps:
                     if a.id in c.applications:
                         applied_course_list.append(c)
-
         else:
             apps = []
             applied_course_list = []
@@ -55,7 +65,7 @@ def create_course(request):
         title = request.POST['course_name']
         description = request.POST['course_description']
         id = request.POST['course_id']
-        time = request.POST['time_text']
+        time = request.POST['course_time']
         section = request.POST['section']
         num_sections = request.POST['num_sections']
         oh = request.POST['office_hours']
@@ -82,7 +92,8 @@ def create_course(request):
         )
         return redirect('/view_apps/')
     else:
-        return render(request, 'view_apps/create_course.html')
+        context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES}
+        return render(request, 'view_apps/create_course.html', context)
 
 def apply(request, id):
     MAX_APPLICATIONS = 5

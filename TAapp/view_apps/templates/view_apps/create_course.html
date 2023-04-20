@@ -1,5 +1,7 @@
 <!-- {% load static %} -->
 
+{
+
 <link rel="stylesheet" href="{% static 'view_apps/forms.css' %}">
 
 <!DOCTYPE html>
@@ -28,24 +30,27 @@
                 <div class="input-box">
                     <span class="details">What is the course name?</span>
                     <select name="course_name" id="course_name">
-                       {% for course in courses %}
-                            <option value="{{ course.course_title }}">{{ course.course_title }}</option>
+                        <option  value="" selected="selected">---SELECT---</option>
+                       {% for course_name in course_names %}
+                            <option value="{{ course_name }}">{{ course_name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="input-box">
                     <span class="details">What is the course ID?</span>
                     <select name="course_id" id="course_id">
-                        {% for course in courses %}
-                            <option value="{{ course.course_id }}">{{ course.course_id }}</option>
+                        <option  value="" selected="selected">---SELECT---</option>
+                        {% for course_id in course_ids %}
+                            <option value="{{ course_id }}">{{ course_id }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="input-box">
                     <span class="details">When is the course?</span>
                     <select name="course_time" id="course_time">
-                        {% for course in courses %}
-                            <option value="{{ course.time_text }}">{{ course.time_text }}</option>
+                        <option  value="" selected="selected">---SELECT---</option>
+                        {% for course_time in course_times %}
+                            <option value="{{course_time}}">{{ course_time }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -55,11 +60,11 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Number of sections</span>
-                    <input name = "num_sections" type="number" placeholder="Enter the number of sections" required>
+                    <input name = "num_sections" type="number" placeholder="Enter the total number of sections" required>
                 </div>
                 <div class="input-box">
-                    <span class="details">Number of sections</span>
-                    <input name = "section" type="number" placeholder="Enter the number of sections" required>
+                    <span class="details">Section</span>
+                    <input name = "section" type="number" placeholder="Enter the section number" required>
                 </div>
                 <div class="input-box">
                     <span class="details">Number of TAs</span>
