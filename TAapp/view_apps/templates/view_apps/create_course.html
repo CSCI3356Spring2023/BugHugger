@@ -27,15 +27,27 @@
                 </div>
                 <div class="input-box">
                     <span class="details">What is the course name?</span>
-                    <input name = "course_name" type="text" placeholder="Enter the course name" required>
+                    <select name="course_name" id="course_name">
+                       {% for course in courses %}
+                            <option value="{{ course.course_title }}">{{ course.course_title }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="input-box">
                     <span class="details">What is the course ID?</span>
-                    <input name = "course_id"  type="text" placeholder="Enter the course ID" required>
+                    <select name="course_id" id="course_id">
+                        {% for course in courses %}
+                            <option value="{{ course.course_id }}">{{ course.course_id }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="input-box">
                     <span class="details">When is the course?</span>
-                    <input name = "time_text" type="text" placeholder="Enter the course time" required>
+                    <select name="course_time" id="course_time">
+                        {% for course in courses %}
+                            <option value="{{ course.time_text }}">{{ course.time_text }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="input-box">
                     <span class="details">Can you describe the course?</span>
