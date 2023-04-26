@@ -16,17 +16,18 @@ class Course(models.Model):
     num_office_hours = models.IntegerField()
     num_tas = models.IntegerField()
     assigned_to_email = models.CharField(max_length=100)
-    applications = models.CharField(max_length = 1000, default = "")
+    applications = models.CharField(max_length=1000, default="")
+    assigned_students = models.CharField(max_length=1000, default="")
 
     def __str__(self):
         return self.course_id
 class App(models.Model):
     a = random.randint(10000000, 99999999)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default = 1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     office_hours = models.CharField(max_length=15, blank=True)
     why_ta = models.CharField(max_length=500, blank=True)
     num_uses = models.IntegerField(default=0)
-    id = models.CharField(max_length = 1000, primary_key = True, default=str(a), )
+    id = models.CharField(max_length=1000, primary_key=True, default=str(a), )
     # TODO: file
     # models.FileField(upload_to='PLACE_HERE')
 

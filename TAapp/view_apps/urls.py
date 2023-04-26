@@ -10,6 +10,6 @@ urlpatterns = [
     path('create_course', views.create_course, name='create_course'),
     path('apply/<str:id>/', views.apply, name='apply'),
     path('applications/<str:id>/', views.applications, name='applications'),
-    path('logoff', views.logoff, name='logoff'), #Added this
+    path('logoff', views.logoff, name='logoff'),
 
 ]

@@ -4,7 +4,7 @@
 
 <nav class = "header-container">
     <p>Boston College TA Application System</p>
-    <p>Student User: {{request.user.username}}</p>
+    <p>Student: {{request.user.username}}</p>
     <p class="logoff-button">
         <a href="{%url 'view_apps:logoff' %}">Log off</a>
     </p>
@@ -76,5 +76,5 @@
     {% endfor %}
     </div>
 {% else %}
-    <p>No courses applied to.</p>
+    <p class = "message">No courses applied to.</p>
 {% endif %}
