@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
+<div class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>User: {{request.user.username}}</p>
+</div>
+<div class = "interface-container">
+    <p> My Courses </p>
+    <p> </p>
+        <a href="{%url 'view_apps:professor' %}" > Go Back</a>
+</div>
+<div class = "message">
+    You may assign any more students at the moment. Please wait for the students to accept or deny the current assignments.
+</div>

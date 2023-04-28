@@ -96,19 +96,19 @@ def assign_student(request, id, name):
     assigned_students_string = current_course.assigned_students
     num_tas = current_course.num_tas
 
-    for a in App.objects.all():
-        if a.user.username == name:
-            a.is_visible = False
-            a.save()
-
     if assigned_students_string == "":
         assigned_students_list = []
         num_assigned = 0
     else:
         assigned_students_list = assigned_students_string.split()
         num_assigned = len(assigned_students_list)
-
-    if name not in assigned_students_list and num_assigned < num_tas:
+    if num_assigned == num_tas: 
+        return render(request, 'view_apps/too_many_assignments.html')
+    elif name not in assigned_students_list and num_assigned < num_tas:
+        for a in App.objects.all():
+            if a.user.username == name:
+                a.is_visible = False
+                a.save()
         assigned_students_list.append(name)
         updated_assigned = " ".join(assigned_students_list)
         current_course.assigned_students = updated_assigned
@@ -122,13 +122,19 @@ def accept(request, id):
     assigned_list = current_course.assigned_students.split()
     accepted_list = current_course.accepted_students.split()
     if user.username in assigned_list and current_course.num_accepted < current_course.num_tas:
+        assigned_list.remove(user.username)
+        updated_assigned = " ".join(assigned_list)
+        current_course.assigned_students = updated_assigned
+        current_course.num_assigned = current_course.num_assigned - 1
+
         accepted_list.append(user.username)
         updated_accepted = " ".join(accepted_list)
         current_course.accepted_students = updated_accepted
         current_course.num_accepted = current_course.num_accepted + 1
+
         current_course.save()
         if current_course.num_accepted == current_course.num_tas:
-            current_course.is_visible = False
+            current_course.is_open = False
             current_course.save()
         for a in App.objects.all():
             if a.user.username == user.username:
@@ -136,8 +142,21 @@ def accept(request, id):
     return index(request)
 
 def deny(request, id):
+    user = request.user
     current_course = Course.objects.all().get(course_id=id)
+    assigned_list = current_course.assigned_students.split()
+    if user.username in assigned_list:
+        assigned_list.remove(user.username)
+        updated_assigned = " ".join(assigned_list)
+        current_course.assigned_students = updated_assigned
+        current_course.num_assigned = current_course.num_assigned - 1
+        current_course.save()
+        for a in App.objects.all():
+            if a.user.username == user.username:
+                a.is_visible = True
+                a.save()
     return index(request)
+
 def create_course(request):
     if request.method == "POST":
         email = request.user.username

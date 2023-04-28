@@ -23,7 +23,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
 {% if course_list %}
     <div class = "course-container">
     {% for course in course_list %}
-        {% if course not in applied_course_list %}
+        {% if course not in applied_course_list and course.is_open%}
         <div class = "course">
             <div class = "course-title">{{ course.course_title }} </div>
             <div class = "course-inner">
@@ -53,9 +53,10 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
 {% else %}
     <p>No courses are available.</p>
 {% endif %}
-{% if applied_course_list %}
+{% if applied_course_list%}
     <div class = "course-container">
     {% for course in applied_course_list %}
+        {% if course.is_open%}
         <div class = "course">
             <div class = "course-title">{{ course.course_title }} </div>
             <div class = "course-inner">
@@ -77,6 +78,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                     <p>APPLIED</p>
             </p>
         </div>
+        {%endif%}
     {% endfor %}
     </div>
 {% else %}
@@ -86,6 +88,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
 {% if accepted_course_list %}
     <div class = "course-container">
     {% for course in accepted_course_list %}
+        {% if course.is_open%}
         <div class = "course">
             <div class = "course-title">{{ course.course_title }} </div>
             <div class = "course-inner">
@@ -114,6 +117,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                 </a>
             </p>
         </div>
+        {%endif%}
     {% endfor %}
     </div>
 {% else %}
