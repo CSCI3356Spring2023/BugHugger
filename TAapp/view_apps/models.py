@@ -16,8 +16,12 @@ class Course(models.Model):
     num_office_hours = models.IntegerField()
     num_tas = models.IntegerField()
     assigned_to_email = models.CharField(max_length=100)
-    applications = models.CharField(max_length=1000, default="")
+    applications = models.CharField(max_length=1000, default="", blank = True)
     assigned_students = models.CharField(max_length=1000, default="", blank = True)
+    accepted_students = models.CharField(max_length=1000, default="", blank = True)
+    num_assigned = models.IntegerField(default = 0, blank = True)
+    num_accepted = models.IntegerField(default = 0, blank = True)
+    is_open = models.BooleanField(default = True)
 
     def __str__(self):
         return self.course_id

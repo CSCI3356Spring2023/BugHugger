@@ -9,6 +9,9 @@
         <a href="{%url 'view_apps:logoff' %}">Log off</a>
     </p>
 </nav>
+{% if assigned_course %}
+Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {{assigned_course.course_id}}
+{% else %}
 <div class = "interface-container">
     <p> My Courses </p>
     <p> Applications Submitted: {{apps}} / 5</p>
@@ -16,6 +19,7 @@
         <a> Filter Courses</a>
     </p>
 </div>
+
 {% if course_list %}
     <div class = "course-container">
     {% for course in course_list %}
@@ -33,7 +37,7 @@
                     <p> Discussions: {{ course.has_discussion }} </p>
                     <p> Meetings: {{ course.has_meetings }} </p>
                     <p> Office Hours: {{ course.num_office_hours }} / Week </p>
-                    <p> No. TAs: {{ course.num_tas }} </p>
+                    <p> No. TAs: {{ course.num_accepted }} / {{ course.num_tas }} </p>
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
@@ -65,7 +69,7 @@
                     <p> Discussions: {{ course.has_discussion }} </p>
                     <p> Meetings: {{ course.has_meetings }} </p>
                     <p> Office Hours: {{ course.num_office_hours }} / Week </p>
-                    <p> No. TAs: {{ course.num_tas }} </p>
+                    <p> No. TAs: {{ course.num_accepted }} / {{ course.num_tas }} </p>
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
@@ -77,4 +81,42 @@
     </div>
 {% else %}
     <p class = "message">No courses applied to.</p>
+{% endif %}
+
+{% if accepted_course_list %}
+    <div class = "course-container">
+    {% for course in accepted_course_list %}
+        <div class = "course">
+            <div class = "course-title">{{ course.course_title }} </div>
+            <div class = "course-inner">
+                <div>
+                    <p> ID: {{ course.course_id }} </p>
+                    <p> Professor: {{ course.professor_text }} </p>
+                    <p> Time: {{ course.time_text }} </p>
+                    <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                </div>
+                <div>
+                    <p> Discussions: {{ course.has_discussion }} </p>
+                    <p> Meetings: {{ course.has_meetings }} </p>
+                    <p> Office Hours: {{ course.num_office_hours }} / Week </p>
+                    <p> No. TAs: {{ course.num_accepted }} / {{ course.num_tas }} </p>
+                </div>
+            </div>
+            <div> {{ course.description_text }} </div>
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:accept' course.course_id%}">
+                    <p>Accept Course Assignment</p>
+                </a>
+            </p>
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:deny' course.course_id%}">
+                    <p>Deny Course Assignment</p>
+                </a>
+            </p>
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p class = "message">No courses accepted to.</p>
+{% endif %}
 {% endif %}

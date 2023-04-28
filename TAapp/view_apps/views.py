@@ -28,17 +28,30 @@ def index(request):
     user = request.user
     if is_student(user):
         course_list = Course.objects.all()
+        for c in course_list:
+            if user.username in c.accepted_students:
+                assigned_course = c
+                context = {'assigned_course': assigned_course}
+                return render(request, 'view_apps/student.html', context)
         if App.objects.all().filter(user=user).exists():
             apps = App.objects.all().filter(user=user)
             applied_course_list = []
+            accepted_course_list = []
             for c in course_list:
+                assigned_list = c.assigned_students.split()
+                if user.username in assigned_list:
+                    accepted_course_list.append(c)
                 for a in apps:
                     if a.id in c.applications:
                         applied_course_list.append(c)
         else:
             apps = []
             applied_course_list = []
-        context = {'course_list': course_list,'apps': len(apps), 'applied_course_list': applied_course_list}
+            accepted_course_list = []
+        context = {'course_list': course_list,
+                   'apps': len(apps),
+                   'applied_course_list': applied_course_list,
+                   'accepted_course_list': accepted_course_list,}
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
         course_list = Course.objects.all().filter(assigned_to_email = user.username)
@@ -99,8 +112,32 @@ def assign_student(request, id, name):
         assigned_students_list.append(name)
         updated_assigned = " ".join(assigned_students_list)
         current_course.assigned_students = updated_assigned
+        current_course.num_assigned = current_course.num_assigned + 1
         current_course.save()
     return applications(request, id)
+
+def accept(request, id):
+    user = request.user
+    current_course = Course.objects.all().get(course_id=id)
+    assigned_list = current_course.assigned_students.split()
+    accepted_list = current_course.accepted_students.split()
+    if user.username in assigned_list and current_course.num_accepted < current_course.num_tas:
+        accepted_list.append(user.username)
+        updated_accepted = " ".join(accepted_list)
+        current_course.accepted_students = updated_accepted
+        current_course.num_accepted = current_course.num_accepted + 1
+        current_course.save()
+        if current_course.num_accepted == current_course.num_tas:
+            current_course.is_visible = False
+            current_course.save()
+        for a in App.objects.all():
+            if a.user.username == user.username:
+                a.delete()
+    return index(request)
+
+def deny(request, id):
+    current_course = Course.objects.all().get(course_id=id)
+    return index(request)
 def create_course(request):
     if request.method == "POST":
         email = request.user.username
