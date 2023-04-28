@@ -17,7 +17,7 @@ class Course(models.Model):
     num_tas = models.IntegerField()
     assigned_to_email = models.CharField(max_length=100)
     applications = models.CharField(max_length=1000, default="")
-    assigned_students = models.CharField(max_length=1000, default="")
+    assigned_students = models.CharField(max_length=1000, default="", blank = True)
 
     def __str__(self):
         return self.course_id

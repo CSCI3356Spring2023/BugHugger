@@ -11,7 +11,7 @@
 </nav>
 <div class = "interface-container">
     <p> My Courses </p>
-    <p> </p>
+    <p> Assigned Students: {{num_assigned}} / {{current_course.num_tas}}</p>
         <a href="{%url 'view_apps:professor' %}" > Go Back</a>
 </div>
 {% if applications_list %}
@@ -22,7 +22,23 @@
             {{application.office_hours}}
             {{application.why_ta}}
         </div>
+        <p class = "apply-button">
+                <a href="{%url 'view_apps:assign_student' current_course application.user.username%}">
+                    <p>Assign Student</p>
+                </a>
+        </p>
     {% endfor %}
 {% else %}
     <p>No applications so far.</p>
+{% endif %}
+{% if assigned_applications_list %}
+    ASSIGNED APPLICATIONS for {{id}}
+    {% for application in assigned_applications_list %}
+        <div>
+            {{application.user.username}}
+            {{application.office_hours}}
+            {{application.why_ta}}
+        </div>
+        <p>ASSIGNED</p>
+    {% endfor %}
 {% endif %}
