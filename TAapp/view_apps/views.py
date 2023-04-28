@@ -67,7 +67,7 @@ def applications(request, id):
             current_app = App.objects.all().get(id = a)
             if current_app.user.username in assigned_students_list:
                 assigned_applications_list.append(current_app)
-            else: applications_list.append(current_app)
+            elif current_app.is_visible: applications_list.append(current_app)
     context = {"applications_list": applications_list,
                "assigned_applications_list": assigned_applications_list,
                "id": id,
@@ -82,6 +82,12 @@ def assign_student(request, id, name):
     applications_id_list = current_course.applications.split()
     assigned_students_string = current_course.assigned_students
     num_tas = current_course.num_tas
+
+    for a in App.objects.all():
+        if a.user.username == name:
+            a.is_visible = False
+            a.save()
+
     if assigned_students_string == "":
         assigned_students_list = []
         num_assigned = 0

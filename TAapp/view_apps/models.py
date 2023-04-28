@@ -23,6 +23,7 @@ class Course(models.Model):
         return self.course_id
 class App(models.Model):
     a = random.randint(10000000, 99999999)
+    is_visible = models.BooleanField(default = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     office_hours = models.CharField(max_length=15, blank=True)
     why_ta = models.CharField(max_length=500, blank=True)
