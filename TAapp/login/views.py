@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 
 from login.forms import ProfProfileForm, StudProfileForm
+from login.models  import Stud_profile, Prof_profile
 
 def login_user(request):
     if request.method == "POST":
@@ -23,15 +24,14 @@ def user_create_student(request):
         profile = StudProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
             f = form.save()
-            f.save()
-            p = form.save()
-            p.save()
+            p = profile.save(commit=False)
             user_group = Group.objects.get(name='Student')
             f.groups.add(user_group)
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
-            p.user = user
+            p.user=user
+            p.save()
             login(request, user)
             return redirect('/view_apps/')
     else:
@@ -48,15 +48,14 @@ def user_create_professor(request):
         profile = ProfProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
             f = form.save()
-            f.save()
-            p = form.save()
-            p.user = f
-            p.save()
+            p = profile.save(commit=False)
             user_group = Group.objects.get(name='Professor')
             f.groups.add(user_group)
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
+            p.user=user
+            p.save()
             login(request, user)
             return redirect('/view_apps/')
     else:
