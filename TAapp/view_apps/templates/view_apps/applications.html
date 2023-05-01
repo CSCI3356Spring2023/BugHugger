@@ -1,44 +1,67 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
-
-<nav class = "header-container">
-    <p>Boston College TA Application System</p>
-    <p>Professor User: {{request.user.username}}</p>
-    <p class="logoff-button">
-        <a href="{%url 'view_apps:logoff' %}">Log off</a>
-    </p>
-</nav>
-<div class = "interface-container">
-    <p> My Courses </p>
-    <p> Assigned Students: {{num_assigned}} / {{current_course.num_tas}}</p>
-        <a href="{%url 'view_apps:professor' %}" > Go Back</a>
-</div>
-{% if applications_list %}
-    APPLICATIONS for {{id}}
-    {% for application in applications_list %}
-        <div>
-            {{application.user.username}}
-            {{application.office_hours}}
-            {{application.why_ta}}
-        </div>
-        <p class = "apply-button">
-                <a href="{%url 'view_apps:assign_student' current_course application.user.username%}">
-                    <p>Assign Student</p>
-                </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'view_apps/applications.css' %}">
+    <title>TA Application System</title>
+</head>
+<body>
+    <nav class="header-container">
+        <p>Boston College TA Application System</p>
+        <p>Professor User: {{request.user.username}}</p>
+        <p class="logoff-button">
+            <a href="{%url 'view_apps:logoff' %}">Log off</a>
         </p>
-    {% endfor %}
-{% else %}
-    <p>No applications so far.</p>
-{% endif %}
-{% if assigned_applications_list %}
-    ASSIGNED APPLICATIONS for {{id}}
-    {% for application in assigned_applications_list %}
-        <div>
-            {{application.user.username}}
-            {{application.office_hours}}
-            {{application.why_ta}}
+    </nav>
+    <div class="interface-container">
+        <p> My Courses </p>
+        <p> Assigned Students: {{num_assigned}} / {{current_course.num_tas}}</p>
+        <a href="{%url 'view_apps:professor' %}"> Go Back</a>
+    </div>
+    {% if applications_list %}
+        <div class="application-list">
+            <div class = "class_name">
+                APPLICATIONS for {{id}}
+            </div>
+            {% for application in applications_list %}
+                <div class="application">
+                    <div class="application--details">
+                        <span class="username">Name: {{application.user.username}}</span>
+                        <span class="office-hours">Office Hour per Week: {{application.office_hours}}</span>
+                    </div>
+                    <div class="why-ta-container">
+                        <span class="why-ta">Why TA: {{application.why_ta}}</span>
+                    </div>
+                    <a class="apply-button" href="{%url 'view_apps:assign_student' current_course application.user.username%}">
+                        <span>Assign Student</span>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-        <p>ASSIGNED</p>
-    {% endfor %}
-{% endif %}
+    {% else %}
+        <!-- <p>No applications so far.</p> -->
+    {% endif %}
+    {% if assigned_applications_list %}
+        <div class="container">
+            <div class = "class_name">
+                ASSIGNED APPLICATIONS for {{id}}
+            </div>
+            {% for application in assigned_applications_list %}
+                <div class="application">
+                    <div class="application--details">
+                        <span class="username">Name: {{application.user.username}}</span>
+                        <span class="office-hours">Office Hour per Week: {{application.office_hours}}</span>
+                    </div>
+                    <div class="why-ta-container">
+                        <span class="why-ta">Why TA: {{application.why_ta}}</span>
+                    </div>
+                    <p> Assigned </p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
