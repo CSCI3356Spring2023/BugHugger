@@ -4,7 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 
 from login.forms import ProfProfileForm, StudProfileForm
-from login.models  import Stud_profile, Prof_profile
 
 def login_user(request):
     if request.method == "POST":
