@@ -32,6 +32,10 @@ ALLOWED_HOSTS = ['*']
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-a7cca.up.railway.app'
+]
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  # new
 DEFAULT_FROM_EMAIL = "forbushs@bc.edu"
