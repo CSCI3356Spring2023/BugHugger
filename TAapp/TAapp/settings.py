@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +28,10 @@ SECRET_KEY = "django-insecure-8$ev==wwl_a)3%hbht7j&@e*if@q$u!sv=db0sguqab*p=(pqh
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  # new
 DEFAULT_FROM_EMAIL = "forbushs@bc.edu"
@@ -128,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
