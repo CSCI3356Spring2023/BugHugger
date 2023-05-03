@@ -1,1 +1,1 @@
-web: gunicorn 'name-of-application.wsgi'
+web: cd ./TAapp && python manage.py migrate && gunicorn TAapp.wsgi
