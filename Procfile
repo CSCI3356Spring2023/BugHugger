@@ -1,1 +1,1 @@
-web: gunicorn TAapp.wsgi
+web: ls
