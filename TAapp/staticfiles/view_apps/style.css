@@ -110,7 +110,6 @@ body {
     font-weight: bold;
     color: #931b1b;
   }
-
   
   /* Course container styles */
   .course-container {
@@ -162,6 +161,7 @@ body {
     text-align: center;
 }
 
+
 .accept-button {
     font-size: 30px;
     text-align: center;
@@ -185,9 +185,6 @@ body {
     font-weight: bold;
     color: #931b1b;
     padding-right: 25%;
-}
-  .message {
-
 }
   
 

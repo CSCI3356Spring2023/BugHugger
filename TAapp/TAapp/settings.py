@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 import os
 
@@ -27,6 +28,10 @@ SECRET_KEY = "django-insecure-8$ev==wwl_a)3%hbht7j&@e*if@q$u!sv=db0sguqab*p=(pqh
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"  # new
 DEFAULT_FROM_EMAIL = "forbushs@bc.edu"
@@ -127,8 +132,6 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
