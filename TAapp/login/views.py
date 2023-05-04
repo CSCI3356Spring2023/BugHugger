@@ -5,6 +5,9 @@ from django.contrib.auth.models import Group
 
 from login.forms import ProfProfileForm, StudProfileForm
 
+
+student_group, created = Group.objects.get_or_create(name='Student')
+professor_group, created = Group.objects.get_or_create(name='Professor')
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
