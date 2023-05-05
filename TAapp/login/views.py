@@ -6,6 +6,8 @@ from .models import Prof_profile, Stud_profile
 from .forms import ProfProfileForm, StudProfileForm
 
 def login_user(request):
+    student_group, created = Group.objects.get_or_create(name='Student')
+    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -18,6 +20,8 @@ def login_user(request):
     return render(request, 'registration/login.html', {})
 
 def user_create_student(request):
+    student_group, created = Group.objects.get_or_create(name='Student')
+    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         profile = StudProfileForm(request.POST)
@@ -44,6 +48,8 @@ def user_create_student(request):
     })
 
 def user_create_professor(request):
+    student_group, created = Group.objects.get_or_create(name='Student')
+    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         profile = ProfProfileForm(request.POST)
