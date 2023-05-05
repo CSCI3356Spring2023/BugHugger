@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group
-from login.forms import ProfProfileForm, StudProfileForm
+from django.contrib.auth.models import Group, User
+from .models import Prof_profile, Stud_profile
+from .forms import ProfProfileForm, StudProfileForm
 
 def login_user(request):
-    student_group, created = Group.objects.get_or_create(name='Student')
-    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('view_apps')
@@ -19,23 +18,23 @@ def login_user(request):
     return render(request, 'registration/login.html', {})
 
 def user_create_student(request):
-    student_group, created = Group.objects.get_or_create(name='Student')
-    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         profile = StudProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
-            f = form.save()
-            p = profile.save(commit=False)
+            user = form.save()
             user_group = Group.objects.get(name='Student')
-            f.groups.add(user_group)
+            user.groups.add(user_group)
+            user.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            p.user=user
-            p.save()
-            login(request, user)
-            return redirect('/view_apps/')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                profile_obj = profile.save(commit=False)
+                profile_obj.user = user
+                profile_obj.save()
+                return redirect('/view_apps/')
     else:
         form = UserCreationForm()
         profile = StudProfileForm()
@@ -43,25 +42,25 @@ def user_create_student(request):
         'form': form,
         'profile': profile
     })
-    
+
 def user_create_professor(request):
-    student_group, created = Group.objects.get_or_create(name='Student')
-    professor_group, created = Group.objects.get_or_create(name='Professor')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         profile = ProfProfileForm(request.POST)
         if form.is_valid() and profile.is_valid():
-            f = form.save()
-            p = profile.save(commit=False)
+            user = form.save()
             user_group = Group.objects.get(name='Professor')
-            f.groups.add(user_group)
+            user.groups.add(user_group)
+            user.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            p.user=user
-            p.save()
-            login(request, user)
-            return redirect('/view_apps/')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                profile_obj = profile.save(commit=False)
+                profile_obj.user = user
+                profile_obj.save()
+                return redirect('/view_apps/')
     else:
         form = UserCreationForm()
         profile = ProfProfileForm()
