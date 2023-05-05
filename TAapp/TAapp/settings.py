@@ -46,14 +46,14 @@ EMAIL_USE_TLS = True  # new
 # Application definition
 
 INSTALLED_APPS = [
-    'view_apps.apps.ViewAppsConfig',
-    'login.apps.LoginConfig',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'view_apps.apps.ViewAppsConfig',
+    'login.apps.LoginConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +141,7 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = "/view_apps"
