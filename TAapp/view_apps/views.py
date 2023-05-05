@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout #Added by Aidan
 from .models import Course, App
 from datetime import datetime
+from django.utils import timezone
 from django.core.mail import send_mail
 import random
 from login.models import Prof_profile, Stud_profile
@@ -195,7 +196,7 @@ def create_course(request):
             disc_val = True
 
         c = Course(assigned_to_email = email, time_text=time, course_title=title, description_text=description,
-                   professor_text=professor_name, pub_date=datetime.now(), course_id=id, has_meetings=meet_val,
+                   professor_text=professor_name, pub_date=timezone.now(), course_id=id, has_meetings=meet_val,
                    has_discussion=disc_val, section=section, num_sections=num_sections, num_office_hours=oh, num_tas=ta)
         c.save()
         send_mail(
