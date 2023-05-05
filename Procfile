@@ -1,1 +1,1 @@
-web: cd ./TAapp && gunicorn TAapp.wsgi
+web: cd ./TAapp && python manage.py migrate && gunicorn TAapp.wsgi
