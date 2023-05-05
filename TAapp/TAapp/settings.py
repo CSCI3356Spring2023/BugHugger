@@ -29,6 +29,13 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = 'zhongpd@bc.edu' 
+EMAIL_HOST_USER = 'zhongpd@bc.edu'
+EMAIL_HOST_PASSWORD = 'saubjyylyepbvysa'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.up.railway.app'
