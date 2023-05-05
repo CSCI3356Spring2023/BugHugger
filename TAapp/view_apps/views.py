@@ -5,6 +5,7 @@ from datetime import datetime
 from django.core.mail import send_mail
 import random
 from login.models import Prof_profile, Stud_profile
+from django.conf import settings
 
 #variables for course names
 COURSE_NAMES = ["Computer Science I", "Computer Science II", "Object Oriented Design",
@@ -64,7 +65,7 @@ def index(request):
 
 def applications(request, id):
     user = request.user
-    current_course = Course.objects.all().get(course_id=id)
+    current_course = Course.objects.filter(course_id=id).first()
     applications_id_list = current_course.applications.split()
     assigned_students_string = current_course.assigned_students
     if assigned_students_string == "":
@@ -102,7 +103,7 @@ def assign_student(request, id, name):
     else:
         assigned_students_list = assigned_students_string.split()
         num_assigned = len(assigned_students_list)
-    if num_assigned == num_tas: 
+    if num_assigned == num_tas:
         return render(request, 'view_apps/too_many_assignments.html')
     elif name not in assigned_students_list and num_assigned < num_tas:
         for a in App.objects.all():
@@ -114,7 +115,22 @@ def assign_student(request, id, name):
         current_course.assigned_students = updated_assigned
         current_course.num_assigned = current_course.num_assigned + 1
         current_course.save()
+
+        # Get the student's email from the Stud_profile model
+        # student_email = Stud_profile.objects.get(user__username=name).email
+        student_email = 'zhongpd@bc.edu'
+
+        # Send an email to the student
+        send_mail(
+            f'Course TA Offer - {current_course.course_title}',
+            f'Congrats, \n\nYou have been offered a TA position for the course {current_course.course_title}. Please log in to your account to accept or decline the offer.',
+            settings.EMAIL_HOST_USER,
+            ['zhongpd@bc.edu'],
+            fail_silently=False,
+        )
+
     return applications(request, id)
+
 
 def accept(request, id):
     user = request.user
@@ -185,8 +201,8 @@ def create_course(request):
         send_mail(
             'Successfully Created Course',
             title,
-            'forbushs@bc.edu',
-            [email + '@bc.edu'],
+            settings.EMAIL_HOST_USER,
+            ['zhongpd@bc.edu'],
             fail_silently=False,
         )
         return redirect('/view_apps/')
