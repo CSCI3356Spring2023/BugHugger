@@ -25,18 +25,19 @@
                     <p> Professor: {{ course.professor_text }} </p>
                     <p> Time: {{ course.time_text }} </p>
                     <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                    <p> Email: {{ course.email_text }} </p>
                 </div>
                 <div>
                     <p> Discussions: {{ course.has_discussion }} </p>
                     <p> Meetings: {{ course.has_meetings }} </p>
-                    <p> Office Hours: {{ course.num_office_hours }} / Week </p>
+                    <p> Office Hours: {{ course.num_office_hours }} hours / Week </p>
                     <p> No. TAs: {{ course.num_tas }} </p>
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
-            <p>
-                <a class = "apply-button" href="{%url 'view_apps:applications' course.course_id%}">
-                    View Applications
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:applications' course.course_id%}">
+                    <p>View Applications</p>
                 </a>
             </p>
         </div>
