@@ -29,7 +29,8 @@
             {% for application in applications_list %}
                 <div class="application">
                     <div class="application--details">
-                        <span class="username">Name: {{application.user.username}}</span>
+                        <span class="username">Name: {{application.student_text}}</span>
+                        <span class="email">Email: {{application.email_text}}</span>
                         <span class="office-hours">Office Hour per Week: {{application.office_hours}}</span>
                     </div>
                     <div class="why-ta-container">
@@ -53,6 +54,7 @@
                 <div class="application">
                     <div class="application--details">
                         <span class="username">Name: {{application.user.username}}</span>
+                        <span class="email">Email: {{application.email_text}}</span>
                         <span class="office-hours">Office Hour per Week: {{application.office_hours}}</span>
                     </div>
                     <div class="why-ta-container">
