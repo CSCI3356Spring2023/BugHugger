@@ -10,17 +10,11 @@
     </p>
 </nav>
 {% if assigned_course %}
-<div>
-    <p class = "message">
-Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {{assigned_course.course_id}}, with {{assigned_course.professor_text}}!
-        No further actions are necessary.
-    </p>
-</div>
-
+Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {{assigned_course.course_id}}
 {% else %}
 <div class = "interface-container">
     <p> My Courses </p>
-    <p class = "num-apps"> Applications Submitted: {{apps}} / 5</p>
+    <p> Applications Submitted: {{apps}} / 5</p>
     <p class = "filter-button">
         <a> Filter Courses</a>
     </p>
@@ -38,6 +32,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                     <p> Professor: {{ course.professor_text }} </p>
                     <p> Time: {{ course.time_text }} </p>
                     <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                    <p> Email: {{ course.email_text }} </p>
                 </div>
                 <div>
                     <p> Discussions: {{ course.has_discussion }} </p>
@@ -47,9 +42,9 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
-            <p class = "button-container">
-                <a class = "apply-button" href="{%url 'view_apps:apply' course.course_id%}">
-                    Submit Application
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:apply' course.course_id%}">
+                    <p>Submit Application</p>
                 </a>
             </p>
         </div>
@@ -59,7 +54,6 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
 {% else %}
     <p>No courses are available.</p>
 {% endif %}
-<div class = "other-title">Applied Courses</div>
 {% if applied_course_list%}
     <div class = "course-container">
     {% for course in applied_course_list %}
@@ -72,6 +66,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                     <p> Professor: {{ course.professor_text }} </p>
                     <p> Time: {{ course.time_text }} </p>
                     <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                    <p> Email: {{ course.email_text }} </p>
                 </div>
                 <div>
                     <p> Discussions: {{ course.has_discussion }} </p>
@@ -81,7 +76,9 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
-
+            <p class = "apply-button">
+                    <p>APPLIED</p>
+            </p>
         </div>
         {%endif%}
     {% endfor %}
@@ -89,7 +86,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
 {% else %}
     <p class = "message">No courses applied to.</p>
 {% endif %}
-<div class = "other-title">Assigned Courses</div>
+
 {% if accepted_course_list %}
     <div class = "course-container">
     {% for course in accepted_course_list %}
@@ -102,6 +99,7 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                     <p> Professor: {{ course.professor_text }} </p>
                     <p> Time: {{ course.time_text }} </p>
                     <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
+                    <p> Email: {{ course.email_text }} </p>
                 </div>
                 <div>
                     <p> Discussions: {{ course.has_discussion }} </p>
@@ -111,14 +109,14 @@ Congrats, you have been assigned as a TA for {{assigned_course.course_title}}, {
                 </div>
             </div>
             <div> {{ course.description_text }} </div>
-            <p>
-                <a class = "accept-button" href="{%url 'view_apps:accept' course.course_id%}">
-                    Accept Assignment
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:accept' course.course_id%}">
+                    <p>Accept Course Assignment</p>
                 </a>
             </p>
-            <p >
-                <a class = "deny-button" href="{%url 'view_apps:deny' course.course_id%}">
-                    Deny Assignment
+            <p class = "apply-button">
+                <a href="{%url 'view_apps:deny' course.course_id%}">
+                    <p>Deny Course Assignment</p>
                 </a>
             </p>
         </div>
