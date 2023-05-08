@@ -30,7 +30,7 @@ class Course(models.Model):
     
 class App(models.Model):
     a = random.randint(10000000, 99999999)
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
     is_visible = models.BooleanField(default = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     student_text = models.CharField(max_length=50)
