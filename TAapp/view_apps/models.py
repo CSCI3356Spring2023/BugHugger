@@ -30,6 +30,7 @@ class Course(models.Model):
     
 class App(models.Model):
     a = random.randint(10000000, 99999999)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
     is_visible = models.BooleanField(default = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     student_text = models.CharField(max_length=50)
@@ -37,7 +38,7 @@ class App(models.Model):
     office_hours = models.CharField(max_length=15, blank=True)
     why_ta = models.CharField(max_length=500, blank=True)
     num_uses = models.IntegerField(default=0)
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True )
+    ### id = models.UUIDField(max_length=1000, primary_key=True, default=uuid.uuid4, unique=True )
     # TODO: file
     # models.FileField(upload_to='PLACE_HERE')
 
