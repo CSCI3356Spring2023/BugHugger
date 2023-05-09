@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
-import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -99,15 +98,13 @@ WSGI_APPLICATION = "TAapp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("PGDATABASE"),
-        "USER": env("PGUSER"),
-        "PORT": env("PGPORT"),
-        "PASSWORD": env("PGPASSWORD"),
-        "HOST": env("PGHOST"),
+        "OPTIONS": {
+            "service": "my_service",
+            "passfile": ".my_pgpass",
+        },
     }
 }
 
