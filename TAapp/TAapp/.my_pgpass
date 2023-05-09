@@ -1,1 +1,0 @@
-${{PGHOST}}:${{Postgres.PGPORT}}:${{PGDATABASE}}:${{PGUSER}}:${{Postgres.PGPASSWORD}}
