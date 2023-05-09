@@ -11,7 +11,11 @@
 <body>
     <nav class="header-container">
         <p>Boston College TA Application System</p>
-        <p>Professor User: {{request.user.username}}</p>
+        {%if is_prof%}
+            <p>Professor User: {{request.user.username}}</p>
+        {% else %}
+            <p>Admin User: {{request.user.username}}</p>
+        {% endif %}
         <p class="logoff-button">
             <a href="{%url 'view_apps:logoff' %}">Log off</a>
         </p>
@@ -19,7 +23,11 @@
     <div class="interface-container">
         <p> My Courses </p>
         <p> Assigned Students: {{num_assigned}} / {{current_course.num_tas}}</p>
-        <a href="{%url 'view_apps:professor' %}"> Go Back</a>
+        {%if is_prof%}
+            <a href="{%url 'view_apps:professor' %}"> Go Back</a>
+        {% else %}
+            <a href="{%url 'view_apps:admin' %}"> Go Back</a>
+        {% endif %}
     </div>
     {% if applications_list %}
         <div class="application-list">
@@ -43,7 +51,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <!-- <p>No applications so far.</p> -->
+        <div class = Message>No unassigned applications.</div>
     {% endif %}
     {% if assigned_applications_list %}
         <div class="container">

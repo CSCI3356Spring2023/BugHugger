@@ -7,7 +7,7 @@ class Course(models.Model):
     description_text = models.CharField(max_length=500)
     pub_date = models.DateTimeField('date published')
     professor_text = models.CharField(max_length=50)
-    email_text = models.CharField(max_length=50)
+    email_text = models.CharField(max_length=50, blank=True)
     course_id = models.CharField(max_length=15)
     time_text = models.CharField(max_length=15)
     has_meetings = models.BooleanField()
@@ -31,8 +31,8 @@ class App(models.Model):
     a = random.randint(10000000, 99999999)
     is_visible = models.BooleanField(default = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-    student_text = models.CharField(max_length=50)
-    email_text = models.CharField(max_length=50)
+    student_text = models.CharField(max_length=50, blank=True)
+    email_text = models.CharField(max_length=50, blank=True)
     office_hours = models.CharField(max_length=15, blank=True)
     why_ta = models.CharField(max_length=500, blank=True)
     num_uses = models.IntegerField(default=0)
@@ -42,5 +42,8 @@ class App(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+
 
 

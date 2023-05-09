@@ -4,13 +4,18 @@
 
 <nav class = "header-container">
     <p>Boston College TA Application System</p>
-    <p>Professor: {{request.user.username}}</p>
+    <p>Admin: {{request.user.username}}</p>
     <p class="logoff-button">
         <a href="{%url 'view_apps:logoff' %}">Log off</a>
     </p>
 </nav>
 <div class = "interface-container">
-    <p> My Courses </p>
+    <p> Admin Info</p>
+    <p> </p>
+        <a href="{%url 'admin:index' %}" > Go To Backend</a>
+</div>
+<div class = "interface-container">
+    <p> All Courses </p>
     <p> </p>
         <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
 </div>

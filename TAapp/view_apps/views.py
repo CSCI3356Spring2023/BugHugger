@@ -27,6 +27,7 @@ def is_student(user):
 def is_professor(user):
     return user.groups.filter(name='Professor').exists()
 
+
 def index(request):
     user = request.user
     if is_student(user):
@@ -61,12 +62,15 @@ def index(request):
         context = {'course_list': course_list}
         return render(request, 'view_apps/professor.html', context)
     else:
-        course_list = Course.objects.all().filter(assigned_to_email=user.username)
+        course_list = Course.objects.all()
         context = {'course_list': course_list}
-        return render(request, 'view_apps/professor.html', context)
+        return render(request, 'view_apps/admin.html', context)
 
 def applications(request, id):
     user = request.user
+    if is_professor(user):
+        is_prof = True
+    else: is_prof = False
     current_course = Course.objects.filter(course_id=id).first()
     applications_id_list = current_course.applications.split()
     assigned_students_string = current_course.assigned_students
@@ -89,7 +93,8 @@ def applications(request, id):
                "id": id,
                "num_assigned": num_assigned,
                "assigned_students_list": assigned_students_list,
-               "current_course": current_course}
+               "current_course": current_course,
+               "is_prof": is_prof,}
     return render(request, 'view_apps/applications.html', context)
 
 def assign_student(request, id, name):
@@ -128,7 +133,7 @@ def assign_student(request, id, name):
             f'Congrats, \n\nYou have been offered a TA position for the course {current_course.course_title}. Please log in to your account to accept or decline the offer.',
             settings.EMAIL_HOST_USER,
             ['zhongpd@bc.edu'],
-            fail_silently=False,
+            fail_silently=True,
         )
 
     return applications(request, id)
