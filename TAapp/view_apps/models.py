@@ -9,7 +9,7 @@ class Course(models.Model):
     pub_date = models.DateTimeField('date published')
     professor_text = models.CharField(max_length=50)
     email_text = models.CharField(max_length=50)
-    course_id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    course_id = models.CharField(max_length=15)
     time_text = models.CharField(max_length=15)
     has_meetings = models.BooleanField()
     has_discussion = models.BooleanField()
