@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
+<div class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>User: {{request.user.username}}</p>
+</div>
+<div class = "interface-container">
+    <p> My Courses </p>
+    <p> </p>
+        <!-- <a href="{%url 'view_apps:student' %}" > Go Back</a> -->
+</div>
+<div class = "message">
+    The course with ID {{courseID}} is now deleted.
+</div>
