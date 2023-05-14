@@ -219,20 +219,16 @@ def create_course(request):
         context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES}
         return render(request, 'view_apps/create_course.html', context)
     
-def delete_course(request):
-    if request.method == "POST":
-        id = request.POST['course_id']
-        
-        Course.objects.filter(course_id=id).delete()
-        send_mail(
-            'Successfully Deleted Course',
-            "Succesfully deleted course with ID " + id,
-            settings.EMAIL_HOST_USER,
-            ['sheppaga@bc.edu'],
-            fail_silently=True,
-        )
-        context={"courseID": id}
-        return render(request, 'view_apps/course_deleted.html', context)
+def delete_course(request, id):
+    Course.objects.all().filter(course_id=id).delete()
+    send_mail(
+        'Successfully Deleted Course',
+        "Succesfully deleted course with ID " + id,
+        settings.EMAIL_HOST_USER,
+        ['sheppaga@bc.edu'],
+        fail_silently=True,
+    )
+    return redirect('/view_apps/')
 
 def apply(request, id):
     MAX_APPLICATIONS = 5

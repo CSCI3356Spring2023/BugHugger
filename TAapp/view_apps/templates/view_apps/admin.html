@@ -44,6 +44,9 @@
                 <a class = "apply-button" href="{%url 'view_apps:applications' course.course_id%}">
                     View Applications
                 </a>
+                <a class = "apply-button" href="{%url 'view_apps:delete_course' course.course_id%}">
+                    Delete Course
+                </a>
             </p>
         </div>
     {% endfor %}
