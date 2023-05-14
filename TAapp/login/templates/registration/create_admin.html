@@ -1,0 +1,15 @@
+{% extends 'registration/index.html' %}
+
+{% block content %}
+
+<form class="" method="POST" action="{% url 'login:create_admin' %}">
+    {% csrf_token %}
+    <h3>Create Account</h3>
+    {{ form }}
+    <br>
+    <h3>Edit Profile</h3>
+    {{ profile }}
+    <input type="submit" id="submit">
+</form>
+
+{% endblock %}

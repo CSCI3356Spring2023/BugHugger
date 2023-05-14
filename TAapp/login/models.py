@@ -10,6 +10,14 @@ class Prof_profile(models.Model):
     def __str__(self):
         return self.email
 
+class Admin_profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    first_name = models.CharField(max_length=60, blank=True)
+    last_name = models.CharField(max_length=60, blank=True)
+    department = models.CharField(max_length=60, blank=True)
+    email = models.EmailField(max_length=60, blank=True)
+    def __str__(self):
+        return self.email
 class Stud_profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=60, blank=True)
