@@ -226,7 +226,7 @@ def create_course(request):
             title,
             settings.EMAIL_HOST_USER,
             ['zhongpd@bc.edu'],
-            fail_silently=True,
+            fail_silently=False,
         )
         return redirect('/view_apps/')
     else:
