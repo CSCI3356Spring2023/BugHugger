@@ -3,13 +3,14 @@ from django.db import models
 from django.contrib.auth.models import User
 import random
 
+
 class Semester(models.Model):
     name = models.CharField(max_length=10, primary_key=True)
     start = models.DateField()
     end = models.DateField()
     open = models.BooleanField(default=False)
-    
-    def __str__(self) -> str:
+
+    def __str__(self):
         return self.name
 
 class Course(models.Model):
@@ -33,7 +34,7 @@ class Course(models.Model):
     num_assigned = models.IntegerField(default = 0, blank = True)
     num_accepted = models.IntegerField(default = 0, blank = True)
     is_open = models.BooleanField(default = True)
-    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, default=None)
+    #semester = models.ForeignKey(Semester, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.course_id
