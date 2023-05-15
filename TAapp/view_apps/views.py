@@ -76,7 +76,7 @@ def index(request):
 
 def view_courses(request, sem):
     courses = Course.objects.filter(semester = sem) 
-    context = {"course_list": courses}
+    context = {'course_list': courses}
     return render(request, 'view_apps/view_courses.html',context)
 
 def applications(request, id):
@@ -211,7 +211,7 @@ def create_course(request):
         disc = request.POST['disc']
         meet_val = True
         disc_val = False
-        semester = request.POST['semester']
+        semester = Semester.objects.filter(open=True).first()
         if meet == 'yes':
             meet_val = True
         if disc == 'yes':
@@ -230,12 +230,7 @@ def create_course(request):
         )
         return redirect('/view_apps/')
     else:
-        OPEN_SEMS = []
-        for sems in Semester.objects.all():
-            if sems.open == True:
-                OPEN_SEMS.append(sems.name)
-
-        context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES, "semesters": OPEN_SEMS}
+        context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES}
         return render(request, 'view_apps/create_course.html', context)
 
 def create_semester(request):

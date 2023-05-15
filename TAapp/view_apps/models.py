@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 import random
 
 class Semester(models.Model):
-    name = models.CharField(max_length=10, primary_key=True)
+    name = models.CharField(max_length=12, primary_key=True)
     start = models.DateField()
     end = models.DateField()
     open = models.BooleanField(default=False)
