@@ -295,7 +295,7 @@ def apply(request, id):
             Course.objects.filter(course_id=course_id).update(applications=current_apps)
             c.save()
         return redirect('/view_apps/')
-    context={"id": id, "name": Stud_profile.first_name + " " + Stud_profile.last_name, "email": Stud_profile.email}
+    context={"id": id, "name": "", "email": ""}
     return render(request, 'view_apps/apply.html', context)
 
 #Function added by Aidan
