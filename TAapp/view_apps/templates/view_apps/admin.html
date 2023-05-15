@@ -9,48 +9,47 @@
         <a href="{%url 'view_apps:logoff' %}">Log off</a>
     </p>
 </nav>
-<div class = "interface-container">
-    <p> Admin Info</p>
+<div class="interface-container">
+    <p> All Semesters </p>
     <p> </p>
-        <a href="{%url 'admin:index' %}" > Go To Backend</a>
+        <a href="{%url 'view_apps:create_semester' %}" > Create Semester</a>
 </div>
-<div class = "interface-container">
-    <p> All Courses </p>
-    <p> </p>
-        <a href="{%url 'view_apps:create_course' %}" > Create Course</a>
-</div>
-{% if course_list %}
+{% if semesters %}
     <div class = "course-container">
-    {% for course in course_list %}
+    {% for semester in semesters %}
+        <a href="{%url 'view_apps:view_courses' semester.name %}">
         <div class = "course">
-            <div class = "course-title">{{ course.course_title }} </div>
+            <div class = "course-title">{{ semester.name }} </div>
             <div class = "course-inner">
                 <div>
-                    <p> ID: {{ course.course_id }} </p>
-                    <p> Professor: {{ course.professor_text }} </p>
-                    <p> Time: {{ course.time_text }} </p>
-                    <p> Section: {{ course.section }} / {{ course.num_sections }}</p>
-                    <p> Email: {{ course.email_text }} </p>
-                </div>
-                <div>
-                    <p> Discussions: {{ course.has_discussion }} </p>
-                    <p> Meetings: {{ course.has_meetings }} </p>
-                    <p> Office Hours: {{ course.num_office_hours }} hours / Week </p>
-                    <p> No. TAs: {{ course.num_tas }} </p>
+                    <p> Start: {{semester.start}}
+                    <br>
+                    <p> End: {{semester.end}}
+                    <br>
+                    {%if semester.open%}
+                        <p> Open: True </p>
+                    {% else %}
+                        <p> Open: False</p>
+                    {% endif %}
                 </div>
             </div>
-            <div> {{ course.description_text }} </div>
             <p>
-                <a class = "apply-button" href="{%url 'view_apps:applications' course.course_id%}">
-                    View Applications
+                <a class = "apply-button" href="{%url 'view_apps:open_close' semester.name%}">
+                    Open / Close Semester
                 </a>
-                <a class = "apply-button" href="{%url 'view_apps:delete_course' course.course_id%}">
-                    Delete Course
+                <a class = "apply-button" href="{%url 'view_apps:delete_semester' semester.name%}">
+                    Delete Semester
                 </a>
             </p>
         </div>
+    </a>
     {% endfor %}
     </div>
 {% else %}
     <p class = "message">No courses created yet.</p>
 {% endif %}
+<div class = "interface-container">
+    <p> Admin Info</p>
+    <p> </p>
+        <a href="{%url 'admin:index' %}" > Go To Backend</a>
+</div>

@@ -1,0 +1,17 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'view_apps/style.css' %}">
+
+<nav class = "header-container">
+    <p>Boston College TA Application System</p>
+    <p>Admin: {{request.user.username}}</p>
+    <p class="logoff-button">
+        <a href="{%url 'view_apps:logoff' %}">Log off</a>
+    </p>
+</nav>
+<form class="" method="POST" action="{% url 'view_apps:create_semester' %}">
+    {% csrf_token %}
+    <h3>New Semester</h3>
+    {{ form }}
+    <input type="submit" id="submit">
+</form>

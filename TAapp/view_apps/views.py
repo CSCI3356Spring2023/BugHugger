@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout #Added by Aidan
-from .models import Course, App
+from .models import Course, App, Semester
 from datetime import datetime
 from django.core.mail import send_mail
 import random
 from login.models import Prof_profile, Stud_profile
 from django.conf import settings
+from .forms import SemesterForm
 
 
 
@@ -26,7 +27,8 @@ def is_student(user):
     return user.groups.filter(name='Student').exists()
 def is_professor(user):
     return user.groups.filter(name='Professor').exists()
-
+def is_admin(user):
+    return user.groups.filter(name='Admin').exists()
 
 def index(request):
     user = request.user
@@ -55,16 +57,27 @@ def index(request):
         context = {'course_list': course_list,
                    'apps': len(apps),
                    'applied_course_list': applied_course_list,
-                   'accepted_course_list': accepted_course_list,}
+                   'accepted_course_list': accepted_course_list,
+                   }
         return render(request, 'view_apps/student.html', context)
     elif is_professor(user):
         course_list = Course.objects.all().filter(assigned_to_email = user.username)
         context = {'course_list': course_list}
         return render(request, 'view_apps/professor.html', context)
+    elif is_admin(user):
+        semesters = Semester.objects.all()
+        course_list = Course.objects.all()
+        context = {'semesters': semesters,
+                   'courses': course_list}
+        return render(request, 'view_apps/admin.html', context)
     else:
         course_list = Course.objects.all()
         context = {'course_list': course_list}
-        return render(request, 'view_apps/admin.html', context)
+
+def view_courses(request, sem):
+    courses = Course.objects.filter(semester = sem) 
+    context = {"course_list": courses}
+    return render(request, 'view_apps/view_courses.html',context)
 
 def applications(request, id):
     user = request.user
@@ -198,6 +211,7 @@ def create_course(request):
         disc = request.POST['disc']
         meet_val = True
         disc_val = False
+        semester = request.POST['semester']
         if meet == 'yes':
             meet_val = True
         if disc == 'yes':
@@ -205,7 +219,7 @@ def create_course(request):
 
         c = Course(assigned_to_email = request.user.username, time_text=time, course_title=title, description_text=description,
                    professor_text=professor_name, email_text=professor_email, pub_date=datetime.now(), course_id=id, has_meetings=meet_val,
-                   has_discussion=disc_val, section=section, num_sections=num_sections, num_office_hours=oh, num_tas=ta)
+                   has_discussion=disc_val, section=section, num_sections=num_sections, num_office_hours=oh, num_tas=ta, semester=semester)
         c.save()
         send_mail(
             'Successfully Created Course',
@@ -216,9 +230,27 @@ def create_course(request):
         )
         return redirect('/view_apps/')
     else:
-        context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES}
+        OPEN_SEMS = []
+        for sems in Semester.objects.all():
+            if sems.open == True:
+                OPEN_SEMS.append(sems.name)
+
+        context={"course_names": COURSE_NAMES, "course_ids": COURSE_IDS, "course_times": COURSE_TIMES, "semesters": OPEN_SEMS}
         return render(request, 'view_apps/create_course.html', context)
-    
+
+def create_semester(request):
+    if request.method == "POST":
+        form = SemesterForm(request.POST)
+        if form.is_valid():
+            sem = form.save()
+            return redirect('/admin/')
+    else:
+        form = SemesterForm()
+    return render(request, 'view_apps/create_semester.html', {
+        'form':form
+    })
+
+
 def delete_course(request, id):
     Course.objects.all().filter(course_id=id).delete()
     send_mail(
@@ -229,6 +261,8 @@ def delete_course(request, id):
         fail_silently=True,
     )
     return redirect('/view_apps/')
+
+
 
 def apply(request, id):
     MAX_APPLICATIONS = 5
@@ -273,3 +307,25 @@ def apply(request, id):
 def logoff(request):
     logout(request)
     return redirect('login')
+
+def open_close(request, id):
+    Semester.objects.get(name=id).open = Semester.objects.get(name=id).open
+    send_mail(
+        'Successfully Changed Semester Status',
+        "Succesfully Changed Semester with ID " + id,
+        settings.EMAIL_HOST_USER,
+        ['sheppaga@bc.edu'],
+        fail_silently=True,
+    )
+    return redirect('/view_apps/')
+
+def delete_semester(request, id):
+    Semester.objects.all().filter(name=id).delete()
+    send_mail(
+        'Successfully Deleted Semester',
+        "Succesfully deleted Semester with ID " + id,
+        settings.EMAIL_HOST_USER,
+        ['sheppaga@bc.edu'],
+        fail_silently=True,
+    )
+    return redirect('/view_apps/')

@@ -99,6 +99,16 @@
                     </div>
                 </div>
 
+                <div class="input-box">
+                    <span class="details">What semester will this course be held?</span>
+                    <select name="semester" id="semester">
+                        <option  value="" selected="selected">---SELECT---</option>
+                       {% for semesters in semesters%}
+                            <option value="{{ semester }}">{{ semester }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
                 <div class="button">
                     <input type="submit" value="Submit">
                 </div>
