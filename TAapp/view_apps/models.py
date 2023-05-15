@@ -1,6 +1,12 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 import random
+
+class Semester(models.Model):
+    start = models.DateField()
+    end = models.DateField()
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
 
 class Course(models.Model):
     course_title = models.CharField(max_length=100)
@@ -23,6 +29,7 @@ class Course(models.Model):
     num_assigned = models.IntegerField(default = 0, blank = True)
     num_accepted = models.IntegerField(default = 0, blank = True)
     is_open = models.BooleanField(default = True)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.course_id
